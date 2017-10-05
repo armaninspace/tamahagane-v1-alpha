@@ -1,0 +1,31 @@
+<?php
+/**
+ * @file
+ * Contains tm_geomap.module.
+ */
+use Drupal\Core\Routing\RouteMatchInterface;
+/**
+ * Implements hook_help().
+ */
+function tm_geomap_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the tm_geomap module.
+    case 'help.page.tm_geomap':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('A module to integrate Geomap in Tamahagane') . '</p>';
+      return $output;
+    default:
+  }
+}
+/**
+ * Implements hook_theme().
+ */
+function tm_geomap_theme() {
+  return [
+    'tm_tm_geomap' => [
+      'template' => 'tm_geomap',
+      'render element' => 'children',
+    ],
+  ];
+}

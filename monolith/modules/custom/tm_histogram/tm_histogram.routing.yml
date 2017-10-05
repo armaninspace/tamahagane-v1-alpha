@@ -1,0 +1,17 @@
+
+tm_histogram.areaform:
+  path: '/tm_histogram/add/form'
+  defaults:
+    _controller: '\Drupal\tm_histogram\Controller\HistogramController::addForm'
+    _title: 'AddForm'
+  requirements:
+    _permission: 'access content'
+
+tm_histogram.histogram_process_data:
+  path: '/tm_histogram/process/data'
+  defaults:
+    _controller: '\Drupal\tm_histogram\Controller\HistogramController::processData'
+    _title: 'ProcessData'
+  requirements:
+    _permission: 'access content'
+

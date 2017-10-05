@@ -1,0 +1,31 @@
+<?php
+/**
+ * @file
+ * Contains tm_spmatrix.module.
+ */
+use Drupal\Core\Routing\RouteMatchInterface;
+/**
+ * Implements hook_help().
+ */
+function tm_heatmap_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the tm_heatmap module.
+    case 'help.page.tm_heatmap':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('A module to integrate Scatter plot matrix in Tamahagne') . '</p>';
+      return $output;
+    default:
+  }
+}
+/**
+ * Implements hook_theme().
+ */
+function tm_heatmap_theme() {
+  return [
+    'tm_heatmap' => [
+      'template' => 'tm_heatmap',
+      'render element' => 'children',
+    ],
+  ];
+}

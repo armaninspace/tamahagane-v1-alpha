@@ -1,0 +1,5 @@
+name: TM Piechart
+type: module
+description: A module to integrate Piechart in Tamahagane
+core: 8.x
+package: Tamahagane

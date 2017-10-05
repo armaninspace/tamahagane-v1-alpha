@@ -1,0 +1,25 @@
+
+tm_scatterplot.scatterplot_controller_hello:
+  path: '/tm_scatterplot/hello/{name}'
+  defaults:
+    _controller: '\Drupal\tm_scatterplot\Controller\ScatterplotController::hello'
+    _title: 'getForm'
+  requirements:
+    _permission: 'access content'
+
+tm_scatterplot.scatterform:
+  path: '/tm_scatterplot/add/form'
+  defaults:
+    _controller: '\Drupal\tm_scatterplot\Controller\ScatterplotController::addForm'
+    _title: 'AddForm'
+  requirements:
+    _permission: 'access content'
+
+tm_scatterplot.scatterplot_process_data:
+  path: '/tm_scatterplot/process/data'
+  defaults:
+    _controller: '\Drupal\tm_scatterplot\Controller\ScatterplotController::processData'
+    _title: 'ProcessData'
+  requirements:
+    _permission: 'access content'
+

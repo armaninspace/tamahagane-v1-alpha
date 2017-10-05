@@ -1,0 +1,17 @@
+
+tm_cmatrix.cmatrixform:
+  path: '/tm_cmatrix/add/form'
+  defaults:
+    _controller: '\Drupal\tm_cmatrix\Controller\CmatrixController::addForm'
+    _title: 'AddForm'
+  requirements:
+    _permission: 'access content'
+
+tm_cmatrix.cmatrix_process_data:
+  path: '/tm_cmatrix/process/data'
+  defaults:
+    _controller: '\Drupal\tm_cmatrix\Controller\CmatrixController::processData'
+    _title: 'ProcessData'
+  requirements:
+    _permission: 'access content'
+

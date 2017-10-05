@@ -1,0 +1,33 @@
+mc_devmode:
+  version: 1.x
+  css:
+    theme:
+      css/mc_devmode.css: {}
+      https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.0/css/bootstrap-select.min.css: { type: external, minified: true }
+  js:
+    js/mc_devmode.js: {}  
+    js/tinymce/js/tinymce/tinymce.min.js: {}
+    js/orbit.carrotsearch.foamtree.js: {}
+    js/r_plotly_include/scatterplot_files/htmlwidgets-0.8/htmlwidgets.js: {}
+    js/r_plotly_include/scatterplot_files/plotlyjs-1.20.2/plotly-latest.min.js: {}
+    js/r_plotly_include/scatterplot_files/plotly-binding-4.5.6.9000/plotly.js: {}
+    js/r_plotly_include/scatterplot_files/crosstalk-0.2.1/js/crosstalk.js: {}
+    js/radar/Chart.js: {}
+    js/pdfexportLib/jspdf.js: {}
+    js/export_pdf/rgbcolor.js: {}
+    js/export_pdf/canvg.js: {}
+    js/export_pdf/svg-to-pdf.js: {}
+    js/export_pdf/html2canvas.js: {}
+    https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.0/js/bootstrap-select.min.js: { type: external, minified: true }
+    https://code.jquery.com/ui/1.12.0/jquery-ui.js: { type: external}
+    https://maps.googleapis.com/maps/api/js?key=AIzaSyCWcRdAsPBdBLo0ShXc65wiBgJCBfU0RVA&libraries=drawing: { type: external}
+    js/jquery.tabletoCSV.js: {}
+    dependencies:
+      - core/jquery
+
+mc_devmode_general:
+  version: 1.x
+  js:
+    js/mc_devmode_general.js: {}
+  dependencies:
+    - core/jquery

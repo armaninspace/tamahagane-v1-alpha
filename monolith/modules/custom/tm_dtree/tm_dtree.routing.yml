@@ -1,0 +1,17 @@
+
+tm_dtree.dtreeform:
+  path: '/tm_dtree/add/form'
+  defaults:
+    _controller: '\Drupal\tm_dtree\Controller\DtreeController::addForm'
+    _title: 'AddForm'
+  requirements:
+    _permission: 'access content'
+
+tm_dtree.dtree_process_data:
+  path: '/tm_dtree/process/data'
+  defaults:
+    _controller: '\Drupal\tm_dtree\Controller\DtreeController::processData'
+    _title: 'ProcessData'
+  requirements:
+    _permission: 'access content'
+

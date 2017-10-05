@@ -1,0 +1,16 @@
+tm_crosstabs.crosstabsform:
+  path: '/tm_crosstabs/add/form'
+  defaults:
+    _controller: '\Drupal\tm_crosstabs\Controller\CrosstabsController::addForm'
+    _title: 'AddForm'
+  requirements:
+    _permission: 'access content'
+
+tm_crosstabs.crosstabs_process_data:
+  path: '/tm_crosstabs/process/data'
+  defaults:
+    _controller: '\Drupal\tm_crosstabs\Controller\CrosstabsController::processData'
+    _title: 'ProcessData'
+  requirements:
+    _permission: 'access content'
+

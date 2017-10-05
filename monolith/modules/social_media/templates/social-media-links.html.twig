@@ -1,0 +1,29 @@
+{#
+/**
+ * Available variables
+ * - elements: array of element contains social media link.
+ *
+ */
+#}
+<div class="social-media-sharing">
+  <ul class="">
+    {%
+  set classes = [
+    'share',
+  ]
+    %}
+    {% for element in elements %}
+      <li>              
+        <a {{ element.attr.target }} {{ element.attr.class.addClass(classes) }}  {{ element.api }}  alt="{{ element.text }}" title ="{{ element.text }}" >       
+            {% if element.img   %}
+              <img src ="{{ element.img }}">
+            {% else %}
+              {{ element.text }}
+            {% endif %}
+          </a>
+
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+

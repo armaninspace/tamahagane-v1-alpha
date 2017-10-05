@@ -1,0 +1,54 @@
+ .joint-selection{
+     display:none
+}
+.joint-selection.lasso{
+    display:block;position:absolute;opacity:.3;overflow:visible
+}
+.joint-selection.selected{
+    display:block;background-color:transparent;opacity:1;cursor:move;position:static;height:0!important}
+.selection-box{
+    position:absolute;padding-right:5px;padding-bottom:5px;margin-top:-4px;margin-left:-4px;box-sizing:content-box
+}
+    
+        #block-system-main #paper .selection-wrapper{
+            position:absolute;margin-left:-6px;margin-top:-6px;
+            padding-right:75px;
+            padding-bottom:15px;pointer-events:none;
+          
+            
+}
+.selection-wrapper[data-selection-length="0"],
+.selection-wrapper[data-selection-length="1"]{display:none}
+.joint-selection .box{
+    position:absolute;top:100%;margin-top:30px;left:-20px;right:-20px;text-align:center;line-height:14px;
+    border-radius:6px;padding:6px
+}.joint-selection .handle.se{
+    bottom:-25px;right:-25px
+}
+.joint-selection .handle.nw{
+    top:-21px;left:-25px
+}
+.joint-selection .handle.n{
+    top:-22px;left:50%;margin-left:-10px
+}
+.joint-selection .handle.e{
+    right:-25px;top:-webkit-calc(50% - 10px);top:calc(50% - 10px)
+}
+.joint-selection .handle.ne{
+    top:-21px;right:-25px
+}
+.joint-selection .handle.w{
+    left:-25px;top:50%;margin-top:-10px
+}
+.joint-selection .handle.sw{
+    bottom:-25px;left:-25px
+}
+.joint-selection .handle.s
+{
+    bottom:-24px;left:50%;margin-left:-10px
+}
+.joint-selection .handle{
+    position:absolute;pointer-events:auto;width:20px;height:20px;background-size:20px 20px;background-repeat:no-repeat;-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none;-webkit-user-drag:none;user-drag:none;cursor:pointer}
+.joint-selection .remove{
+    cursor:pointer
+}

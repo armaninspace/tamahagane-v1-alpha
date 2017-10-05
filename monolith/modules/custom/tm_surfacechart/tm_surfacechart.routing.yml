@@ -1,0 +1,25 @@
+
+tm_surfacechart.surfacechart_controller_hello:
+  path: '/tm_surfacechart/hello/{name}'
+  defaults:
+    _controller: '\Drupal\tm_surfacechart\Controller\SurfacechartController::hello'
+    _title: 'getForm'
+  requirements:
+    _permission: 'access content'
+
+tm_surfacechart.surfaceform:
+  path: '/tm_surfacechart/add/form'
+  defaults:
+    _controller: '\Drupal\tm_surfacechart\Controller\SurfacechartController::addForm'
+    _title: 'AddForm'
+  requirements:
+    _permission: 'access content'
+
+tm_surfacechart.surface_process_data:
+  path: '/tm_surfacechart/process/data'
+  defaults:
+    _controller: '\Drupal\tm_surfacechart\Controller\SurfacechartController::processData'
+    _title: 'ProcessData'
+  requirements:
+    _permission: 'access content'
+

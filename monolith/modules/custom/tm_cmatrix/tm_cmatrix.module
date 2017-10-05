@@ -1,0 +1,31 @@
+<?php
+/**
+ * @file
+ * Contains tm_spmatrix.module.
+ */
+use Drupal\Core\Routing\RouteMatchInterface;
+/**
+ * Implements hook_help().
+ */
+function tm_cmatrix_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the tm_cmatrix module.
+    case 'help.page.tm_cmatrix':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('A module to integrate Scatter plot matrix in Tamahagne') . '</p>';
+      return $output;
+    default:
+  }
+}
+/**
+ * Implements hook_theme().
+ */
+function tm_cmatrix_theme() {
+  return [
+    'tm_cmatrix' => [
+      'template' => 'tm_cmatrix',
+      'render element' => 'children',
+    ],
+  ];
+}

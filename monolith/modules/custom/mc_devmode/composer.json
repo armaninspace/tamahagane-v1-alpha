@@ -1,0 +1,14 @@
+{
+  "name": "drupal/mc_devmode",
+  "type": "drupal-module",
+  "description": "A module to provide developer mode in Market Calipar",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/mc_devmode",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/mc_devmode",
+    "source": "http://cgit.drupalcode.org/mc_devmode"
+  },
+  "require": { }
+}

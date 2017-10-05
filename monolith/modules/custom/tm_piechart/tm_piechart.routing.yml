@@ -1,0 +1,16 @@
+tm_piechart.piechartform:
+  path: '/tm_piechart/add/form'
+  defaults:
+    _controller: '\Drupal\tm_piechart\Controller\PiechartController::addForm'
+    _title: 'AddForm'
+  requirements:
+    _permission: 'access content'
+
+tm_piechart.piechart_process_data:
+  path: '/tm_piechart/process/data'
+  defaults:
+    _controller: '\Drupal\tm_piechart\Controller\PiechartController::processData'
+    _title: 'ProcessData'
+  requirements:
+    _permission: 'access content'
+

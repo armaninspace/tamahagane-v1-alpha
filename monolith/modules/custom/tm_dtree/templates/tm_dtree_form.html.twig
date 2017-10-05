@@ -1,0 +1,57 @@
+<form class="sections_forms" id="dtree_form" method="post" style="display: block;">
+  <h3>Decision Tree</h3>
+  <div class="form-inner">
+    <div class="form-group">
+	  <label for="dt_title" class="control-label">Title:<span class="form-required" title="This field is required."></span></label>
+	  <input type="text" class="form-control" id="dt_title" name="dt_title" required="" pattern=".*\S+.*">
+    </div>
+	<div class="form-group">
+	  <label for="dt_outcome_col" class="control-label">Select Outcome:<span class="form-required" title="This field is required."></span></label>
+	  <select class="form-control outcome-sel" id="dt_outcome_col" name="dt_outcome_col">
+		{#all_types.factor_type#}
+		<option data-type="" value="">--- Select Column ----</option>
+		{% for data in merged_fields %}
+		  {% set foo = data|split('=') %}
+		  <option data-type="{{ foo[1] }}" value="{{ foo[0] }}">{{ foo[0] }}</option>
+		{% endfor %}
+	  </select>
+	</div>
+    <div class="form-group">
+	  <label for="dt_pred_col" class="control-label">Select Predictor(s):<span class="form-required" title="This field is required."></span></label>
+	  <select class="selectpicker multiselect" id="dt_pred_col" name="dt_pred_col" multiple required>
+		{% for data in merged_fields %}
+		  {% set foo = data|split('=') %}
+		  <option data-type="{{ foo[1] }}" value="{{ foo[0] }}">{{ foo[0] }}</option>
+		{% endfor %}
+	  </select>
+    </div>
+    <div class="form-group filter-div">
+	  <label for="" class="control-label filters">Filters:</label>
+	  <div class="filter_note"><span class="form-required"></span>Character filters are case sensitive for "is equal to" operator.</div>
+    </div>
+    <input type="hidden" name="dt_filter_count" id="dt_filter_count" value="1">
+    <input type="hidden" name="csv_file_path" id="csvFilePath" value="{{ file_path }}">
+    <input type="hidden" name="img_dir" id="imgDir" value="{{ img_dir }}">
+    <input type="hidden" id="module_path_box" name="module_path_box" value="{{ module_path }}">
+    <div id="dt_filter1" class="form-group form-inline filterDiv first">
+	  <select class="form-control filterColoumSel filter-sel" id="dt_filter_sel1" name="dt_filter_sel1">
+		<option data-type="" value="">--- Select Filter ----</option>
+		{% for data in merged_fields %}
+		  {% set foo = data|split('=') %}
+		  <option data-type="{{ foo[1] }}" value="{{ foo[0] }}">{{ foo[0] }}</option>
+		{% endfor %}
+	  </select>
+	  <select class="form-control filter-oper" id="dt_filter_cond_sel1" name="dt_filter_cond_sel1">
+	    <option value="">--Select Operator--</option>
+	  </select>
+	  <input type="text" class="form-control filter-val" id="dt_filter_cond_val1" name="dt_filter_cond_val1" placeholder="Value">
+    </div>
+    <div class="form-group add-more-cont">
+      <a id="dt_addb" class="add-more" name="dt_addmore" type="">Add Condition</a>
+    </div>
+  </div><!-- end form-inner--> 
+  <div class="form-group form-btns">
+	<button type="button" class="btn btn-default cancel_btn">Cancel</button>
+	<input type="submit" class="btn btn-default submit-btn" name="dtree_sub" value="Submit" id="dtree_sub">
+  </div>
+</form>

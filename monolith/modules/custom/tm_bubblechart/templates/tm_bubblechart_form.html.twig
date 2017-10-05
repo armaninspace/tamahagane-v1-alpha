@@ -1,0 +1,155 @@
+<form class="sections_forms" id="bubble_chart_form" method="post" style="display: block;">
+  <h3>Bubble Chart</h3>
+  <div class="form-inner">
+    <div class="form-group">
+	  <label for="bubble_title" class="control-label">Title:<span class="form-required" title="This field is required."></span></label>
+	  <input type="text" class="form-control" id="bubble_title" name="bubble_title" required="" pattern=".*\S+.*">
+    </div>
+    <div class="form-group">
+	  <label for="bubblechart_xaxis_col" class="control-label">Select
+		  x-axis column:<span class="form-required"
+							  title="This field is required."></span></label>
+	  <select class="form-control singleselect"
+			  id="bubblechart_xaxis_col" name="bubblechart_xaxis_col"
+			  required>
+		<option value="" data-type="">-- Select Column --</option>
+		{% for data in num_fields %}
+		  {% set foo = data|split('=') %}
+		  <option data-type="{{ foo[1] }}" value="{{ foo[0] }}">{{ foo[0] }}</option>
+		{% endfor %}
+	  </select>
+    </div>
+    <div class="form-group">
+	  <label for="bubblechart_yaxis_col" class="control-label">Select
+		  y-axis column:<span class="form-required"
+							  title="This field is required."></span></label>
+	  <select class="form-control singleselect"
+			  id="bubblechart_yaxis_col" name="bubblechart_yaxis_col"
+			  required>
+		<option value="" data-type="">-- Select Column --</option>
+		{% for data in num_fields %}
+		  {% set foo = data|split('=') %}
+		  <option data-type="{{ foo[1] }}" value="{{ foo[0] }}">{{ foo[0] }}</option>
+		{% endfor %}
+	  </select>
+    </div>
+    <div class="form-group">
+	  <label for="bubblechart_zaxis_col" class="control-label">Select
+		  z-axis column:<span class="form-required"
+							  title="This field is required."></span></label>
+	  <select class="form-control singleselect"
+			  id="bubblechart_zaxis_col" name="bubblechart_zaxis_col"
+			  required>
+		<option value="" data-type="">-- Select Column --</option>
+		{% for data in num_fields %}
+		  {% set foo = data|split('=') %}
+		  <option data-type="{{ foo[1] }}" value="{{ foo[0] }}">{{ foo[0] }}</option>
+		{% endfor %}
+      </select>
+    </div>
+    <div class="form-group">
+	  <label for="scatter_xtitle" class="control-label">X-axis
+		  title:</label>
+	  <input type="text" class="form-control" id="bubble_xtitle"
+			 name="bubble_xtitle">
+    </div>
+    <div class="form-group">
+	  <label for="scatter_ytitle" class="control-label">Y-axis
+		  title:</label>
+	  <input type="text" class="form-control" id="bubble_ytitle"
+			 name="bubble_ytitle">
+    </div>
+	<div class="form-group">
+	  <label for="bubble_ztitle" class="control-label">Z-axis
+		  title:</label>
+	  <input type="text" class="form-control" id="bubble_ztitle"
+			 name="bubble_ztitle">
+    </div>
+	<div class="form-group">
+	  <label for="bubble_col" class="control-label">Select Bubble column:<span class="form-required"
+																			   title="This field is required."></span></label>
+	  <select class="form-control color-sel" id="bubble_col" name="bubble_col" required>
+		<option data-type="" value="">-- Select Column --</option>
+		{% for data in num_fields %}
+		  {% set foo = data|split('=') %}
+		  <option data-type="{{ foo[1] }}" value="{{ foo[0] }}">{{ foo[0] }}</option>
+		{% endfor %}
+	  </select>
+	</div>
+    <div class="form-group">
+	  <label for="bubble_color_col" class="control-label">Select Color column:</label>
+	  {% if all_types.factor_type is empty %}
+		<select class="form-control color-sel" id="bubble_color_col" name="bubble_color_col" disabled>
+          <option data-type="" value="">No column available for color variable </option>
+		</select>
+	  {% else %}
+	  <select class="form-control color-sel" id="bubble_color_col" name="bubble_color_col">
+		<option data-type="" value="">-- Select Column --</option>
+		{% for data in all_types.factor_type %}
+		  {% set foo = data|split('=') %}
+		  <option data-type="{{ foo[1] }}" value="{{ foo[0] }}">{{ foo[0] }}</option>
+		{% endfor %}
+	  </select>
+	  {% endif %}
+    </div>
+	<div class="form-group">
+	  <label for="bubblechart_text_col" class="control-label">Select Text column:</label>
+	  {% if all_types.factor_type is empty %}
+		<select class="form-control color-sel" id="bubblechart_text_col" name="bubblechart_text_col" disabled>
+		  <option data-type="" value="">No column available for text variable </option>
+		</select>
+	  {% else %}
+		<select class="form-control singleselect" id="bubblechart_text_col" name="bubblechart_text_col">
+		  <option value="" data-type="">-- Select Column --</option>
+		  {% for data in all_types.factor_type %}
+			{% set foo = data|split('=') %}
+			<option data-type="{{ foo[1] }}" value="{{ foo[0] }}">{{ foo[0] }}</option>
+		  {% endfor %}
+		</select>
+	  {% endif %}
+	</div>
+    <div class="form-group">
+	  <label for="bubble_size" class="control-label">Select Bubble Size:</label>
+	  <select class="form-control color-sel" id="bubble_size" name="bubble_size">
+		<option value="1">-- Select Size --</option>
+		<option value="0.1">0.1</option>
+		<option value="0.2">0.2</option>
+		<option value="0.3">0.3</option>
+		<option value="0.4">0.4</option>
+		<option value="0.5">0.5</option>
+	  </select>
+    </div>
+    <div class="form-group">
+      <div class="form-group filter-div">
+        <label for="" class="control-label filters">Filters:</label>
+        <div class="filter_note"><span class="form-required"></span>Character filters are case sensitive for "is equal to" operator.</div>
+      </div>
+	  <input type="hidden" name="bubble_filter_count" id="bubble_filter_count" value="1">
+	  <input type="hidden" name="csv_file_path" id="csvFilePath" value="{{ file_path }}">
+	  <input type="hidden" name="img_dir" id="imgDir" value="{{ img_dir }}">
+	  <input type="hidden" id="module_path_bubble" name="module_path_bubble" value="{{ module_path }}">
+	  <div id="bubble_filter1" class="form-group form-inline filterDiv first">
+		<select class="form-control filterColoumSel filter-sel" id="bubble_filter_sel1" name="bubble_filter_sel1">
+		  <option value="">-- Select Column --</option>
+		  {% for data in merged_fields %}
+			{% set foo = data|split('=') %}
+			<option data-type="{{ foo[1] }}" value="{{ foo[0] }}">{{ foo[0] }}</option>
+		  {% endfor %}
+		</select>
+		<select class="form-control filter-oper" id="bubble_filter_cond_sel1" name="bubble_filter_cond_sel1">
+          <option value="">-- Select Operator --</option>
+		</select>
+		<input type="text" class="form-control filter-val" id="bubble_filter_cond_val1" name="bubble_filter_cond_val1" placeholder="Value">
+	  </div>
+	  <div class="form-group add-more-cont">
+		  <a id="bubble_addb" class="add-more" name="bubble_addmore" type="">Add Condition</a>
+	  </div>
+	</div> 
+  </div><!--end form-inner-->
+  <div class="form-group form-submit form-btns">
+	<input type="submit" class="btn btn-default submit-btn" name="bubble_chart_sub" value="Submit" id="bubble_chart_sub">
+	  <button type="button" class="btn btn-default cancel_btn">Cancel</button>
+	  <img class="classifier-modify" src="/sites/default/files/graphloader.gif">
+  </div>
+	<input id="bubblechartfile" type="hidden" name="bubblechartfile" value="">
+</form>

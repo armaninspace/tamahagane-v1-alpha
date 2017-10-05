@@ -1,0 +1,31 @@
+<?php
+/**
+ * @file
+ * Contains mc_devmode.module.
+ */
+use Drupal\Core\Routing\RouteMatchInterface;
+/**
+ * Implements hook_help().
+ */
+function mc_devmode_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the mc_devmode module.
+    case 'help.page.mc_devmode':
+	  $output = '';
+	  $output .= '<h3>' . t('About') . '</h3>';
+	  $output .= '<p>' . t('A module to provide developer mode in Market Calipar') . '</p>';
+	  return $output;
+    default:
+  }
+}
+/**
+ * Implements hook_theme().
+ */
+function mc_devmode_theme() {
+  return [
+    'mc_devmode' => [
+      'template' => 'mc_devmode',
+      'render element' => 'children',
+    ],
+  ];
+}

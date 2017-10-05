@@ -1,0 +1,16 @@
+tm_linechart.lineform:
+  path: '/tm_linechart/add/form'
+  defaults:
+    _controller: '\Drupal\tm_linechart\Controller\LinechartController::addForm'
+    _title: 'AddForm'
+  requirements:
+    _permission: 'access content'
+
+tm_linechart.linechart_process_data:
+  path: '/tm_linechart/process/data'
+  defaults:
+    _controller: '\Drupal\tm_linechart\Controller\LinechartController::processData'
+    _title: 'ProcessData'
+  requirements:
+    _permission: 'access content'
+

@@ -1,0 +1,31 @@
+<?php
+/**
+ * @file
+ * Contains tm_clusteranalysis.module.
+ */
+use Drupal\Core\Routing\RouteMatchInterface;
+/**
+ * Implements hook_help().
+ */
+function tm_clusteranalysis_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the tm_clusteranalysis module.
+    case 'help.page.tm_clusteranalysis':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('A module to integrateCluster analysis in Tamahagane') . '</p>';
+      return $output;
+    default:
+  }
+}
+/**
+ * Implements hook_theme().
+ */
+function tm_clusteranalysis_theme() {
+  return [
+    'tm_clusteranalysis' => [
+      'template' => 'tm_clusteranalysis',
+      'render element' => 'children',
+    ],
+  ];
+}

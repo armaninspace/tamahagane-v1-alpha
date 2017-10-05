@@ -1,0 +1,16 @@
+tm_rankingplot.rankingplotform:
+  path: '/tm_rankingplot/add/form'
+  defaults:
+    _controller: '\Drupal\tm_rankingplot\Controller\RankingplotController::addForm'
+    _title: 'AddForm'
+  requirements:
+    _permission: 'access content'
+
+tm_rankingplot.rankingplot_process_data:
+  path: '/tm_rankingplot/process/data'
+  defaults:
+    _controller: '\Drupal\tm_rankingplot\Controller\RankingplotController::processData'
+    _title: 'ProcessData'
+  requirements:
+    _permission: 'access content'
+

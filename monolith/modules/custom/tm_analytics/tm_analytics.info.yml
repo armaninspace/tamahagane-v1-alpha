@@ -1,0 +1,6 @@
+name: TM Analytics
+type: module
+description: 'A base view for All the Charts.'
+package: Tamahagane
+core: 8.x
+hidden: false

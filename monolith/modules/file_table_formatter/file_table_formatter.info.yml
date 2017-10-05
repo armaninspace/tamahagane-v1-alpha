@@ -1,0 +1,13 @@
+name: 'File Table Formatter'
+description: 'Display uploaded files as tables'
+# core: 8.x
+type: module
+dependencies:
+  - file
+
+
+# Information added by Drupal.org packaging script on 2017-06-03
+version: '8.x-1.x-dev'
+core: '8.x'
+project: 'file_table_formatter'
+datestamp: 1496524745

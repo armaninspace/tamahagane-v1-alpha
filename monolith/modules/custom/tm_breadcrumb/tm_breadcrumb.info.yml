@@ -1,0 +1,5 @@
+name: Custom Breadcrumbs
+type: module
+description: Setting breadcrumbs for custom content types.
+core: 8.x
+package: Tamahagane

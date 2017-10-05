@@ -1,0 +1,16 @@
+tm_geomap.geomapform:
+  path: '/tm_geomap/add/form'
+  defaults:
+    _controller: '\Drupal\tm_geomap\Controller\GeomapController::addForm'
+    _title: 'AddForm'
+  requirements:
+    _permission: 'access content'
+
+tm_geomap.geomap_process_data:
+  path: '/tm_geomap/process/data'
+  defaults:
+    _controller: '\Drupal\tm_geomap\Controller\GeomapController::processData'
+    _title: 'ProcessData'
+  requirements:
+    _permission: 'access content'
+

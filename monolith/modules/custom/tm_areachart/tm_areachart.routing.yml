@@ -1,0 +1,17 @@
+
+tm_areachart.areaform:
+  path: '/tm_areachart/add/form'
+  defaults:
+    _controller: '\Drupal\tm_areachart\Controller\AreachartController::addForm'
+    _title: 'AddForm'
+  requirements:
+    _permission: 'access content'
+
+tm_areachart.areachart_process_data:
+  path: '/tm_areachart/process/data'
+  defaults:
+    _controller: '\Drupal\tm_areachart\Controller\AreachartController::processData'
+    _title: 'ProcessData'
+  requirements:
+    _permission: 'access content'
+

@@ -1,0 +1,778 @@
+.xl-report-display-tpl-row {
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 1px solid #e7e7e7;
+}
+.xl-report-display-tpl-row .tabs-coloumn {
+  min-height: 700px;
+  padding-left: 0;
+}
+//test change
+.tabs-coloumn {
+  background-color: #F2F2F2;
+  height: 100%;
+  padding-top: 20px;
+}
+.xl-report-display-tpl-row .report-title .form-control, 
+.xl-report-display-tpl-row #design .form-control, 
+.xl-report-display-tpl-row #charts .form-control, 
+.xl-report-display-tpl-row #secForms .sections_forms .form-control, 
+.xl-report-display-tpl-row .tabs-coloumn .dropdown.open .dropdown-menu .rss-feed .form-control,
+.sections_forms .form-control,
+#parameters-box .form-control,
+#compareModal .form-control {
+  background: #FFF;
+  border-radius: 0;
+  font-size: 12px;
+  height: 28px;
+  line-height: 20px;
+  padding: 0 4px;
+}
+.xl-report-display-tpl-row .tabs-coloumn label {
+  font-size: 12px;
+  font-weight: normal;
+  height: 24px;
+}
+.xl-report-display-tpl-row .tabs-coloumn .form-required::after {
+  background: none;
+}
+.xl-report-display-tpl-row .tabs-coloumn input[type="text"] {
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+}
+.tabs-coloumn .dropdown .dropdown-toggle {
+  width: 50%;
+}
+#tabs {
+  float: left; 
+  margin-top: 9px;
+  width: 100%;
+}
+#tabs ul.nav-tabs {
+  border: none;
+}
+#tabs ul.nav-tabs > li {
+  float: left;
+  margin: 5px 0 15px;
+  width: 100%;
+}
+#tabs ul.nav-tabs > li > a {
+  border-radius: 4px;
+}
+#tabs ul.nav-tabs > li > a:hover {
+  border-color: #ddd;
+}
+#tabs .nav-tabs > li.active > a,
+#tabs .nav-tabs > li.active > a:hover,
+#tabs .nav-tabs > li.active > a:focus {
+  border-color: #ddd;
+}
+.xl-report-display-tpl-row .graph-holder {
+  padding-right: 0;
+  padding-left: 0;
+}
+.graphical-area {
+  padding-top: 50px;
+}
+.graphical-area div.tab-pane > img {
+  width: 100%;
+}
+.graphical-area div.tab-pane > div.panel-heading {
+  display: block;
+}
+.graphical-area div.tab-pane > div.panel-heading > .glyphicon.glyphicon-pencil,
+.grid-stack-item-content > div.panel-heading > .glyphicon.glyphicon-pencil {
+  cursor: pointer;
+  float: right;
+}
+.graphical-area div.tab-pane > div.panel-heading > .glyphicon,
+.grid-stack-item-content > div.panel-heading > .glyphicon {
+  /*color: #078d92;*/
+}
+.grid-stack-item-content > div.panel-heading > .glyphicon {
+  margin-top: 5px;
+}
+textarea.json-data {
+  display: none;
+}
+#container-pdf-export {
+  display: none;
+}
+.glyphicon.glyphicon-trash.rem-chart {
+  float: right;
+  margin-right: 13px;
+  cursor: pointer;
+}
+.tooltipp {
+  position: relative;
+  display: inline-block;
+  margin-left: 10px;
+}
+.tabs-coloumn ul li {
+  cursor: pointer;
+}
+/**************************************/
+ul#selected1 {
+  padding-left: 19px;
+  padding-right: 19px;
+  padding-top: 0;
+  padding-bottom: 12px;
+  width: 100%;
+}
+#selected1 li.dropdown-content {
+  padding-left: 15px;
+}
+li span:hover {
+  cursor: pointer;
+}
+.rss-feed {
+  margin: 15px 16px 12px;
+}
+.rss-feed ul {
+  list-style: none;
+  padding: 0;
+  margin: 1em 0 0.5em;
+}
+#other {
+  padding-left: 19px;
+  padding-right: 19px;
+  width: 100%;
+}
+#other li.dropdown-content {
+  padding-left: 12px;
+}
+#selected1 li,
+#other li {
+  list-style: none;
+  width: 100%;
+}
+#selected1 li.dropdown-content:hover,
+#other li.dropdown-content:hover {
+  background-color: #F7F7F9;
+}
+#selected1 li.dropdown-header,
+#other li.dropdown-header {
+  font-size: 12px;
+  font-weight: normal;
+  list-style: outside none circle;
+  overflow: hidden;
+  padding: 5px 0;
+  text-align: left;
+  width: 100%;
+}
+.rss-feed a {
+  text-decoration: none;
+  color: #fff;
+}
+.btn-group.bootstrap-select.selectpicker {
+  width: 320px !important;
+}
+.glyphicon-pushpin.selected-li {
+  color:  #1bd3df; 
+  -webkit-transform:  rotate(0deg) !important;
+  -moz-transform:  rotate(0deg) !important;
+  -ms-transform:  rotate(0deg) !important;
+  -o-transform:  rotate(0deg) !important;
+  transform:  rotate(0deg) !important;
+}
+span.glyphicon.glyphicon-pushpin {
+  padding: 5px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+#selected1 {
+  display: none;
+}
+#selected1.block {
+  display: block;
+}
+.glyy-rotate-45 {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.custom_dropdown li a {
+  float: left;
+  width: 90%;
+}
+.node-report-operation img.graphLoader-save {
+  float: left;
+  margin-left: 4px;
+  margin-right: 4px;
+  margin-top: 8px;
+}
+.modal .modal-header .modal-title {
+  float: left;
+}
+.modal .modal-header .ui-button {
+  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+  border: medium none;
+  float: right;
+  width: auto;
+}
+.graphical-area .panel-default[id^="compare"] .panel-body {
+  min-width: 1200px;
+}
+.graphical-area .panel-default .compare-body {
+  float: left;
+  width: 100%;
+  /*min-width: 1200px;*/
+}
+/******/
+/*Analytics column for two column structure*/
+div.analytics-column ul.links {
+  display: none;
+}
+div.analytics-column.mem-exist ul.links {
+  display: block;
+}
+div.analytics-column ul.nav {
+  width: 100%;
+}
+div.analytics-column #design div.select-dataset,
+div.analytics-column #design div.select-chart-dropbox,
+div.analytics-column #design div#secForms {
+  float: left;
+  width: 100%;
+  margin-top: -30px;
+}
+div.analytics-column .report-title .form-control, 
+div.analytics-column #design .form-control, 
+div.analytics-column #charts .form-control, 
+div.analytics-column #secForms .sections_forms .form-control, 
+div.analytics-column .dropdown.open .dropdown-menu .rss-feed .form-control {
+  background: #fff none repeat scroll 0 0;
+  border-radius: 0;
+  font-size: 12px;
+  height: 28px;
+  line-height: 20px;
+  padding: 0 4px;
+}
+div.analytics-column .dropdown button .caret {	
+  display: block;
+  position: absolute;
+  right: 2%;
+  top: 74%;
+}
+div.analytics-column .dropdown.open .dropdown-menu, 
+div.analytics-column .dropdown-menu.open {
+  border-radius: 0;
+  left: 0;
+  width: 100%;
+}
+div.analytics-column ul.dropdown-menu.inner {
+  max-height: 290px !important;
+}
+div.analytics-column .custom_dropdown li a {
+  padding: 0 !important;
+}
+div.analytics-column .tab-content label,
+div#chart-div .sections_forms label,
+div#parameters-box label,
+div#notes-div label,
+div#compareModal label,
+div#expModal label {
+  font-family: gotham book;
+  font-size: 12px;
+  font-weight: normal;
+  margin-bottom: 0;
+}
+div.analytics-column #secForms .sections_forms .form-group .show-tick {
+  float: left;
+  margin-bottom: 5px;
+  width: 100%;
+}
+div.analytics-column .bootstrap-select.btn-group .dropdown-menu li,
+div.analytics-column .bootstrap-select.btn-group .dropdown-menu li a {
+  color: #333;
+  font-size: 12px;
+  text-transform: capitalize;
+  width: 100%;
+}
+div.analytics-column .bootstrap-select.btn-group .dropdown-menu li a:hover {
+  color: #333;
+}
+.sections_forms .form-inner .btn-default,
+.sections_forms .form-inner .btn-default:hover,
+.sections_forms .form-inner .btn-default:focus {
+  background-color: #fff !important;
+}
+div.analytics-column #secForms .sections_forms .form-inner .btn-default,
+.sections_forms .form-inner .btn-default {
+  border: 1px solid #e7e7e7;
+  color: #2e2e2e;
+  font-size: 12px;
+  height: 28px;
+  line-height: 20px;
+  padding-bottom: 3px;
+  padding-top: 3px;
+  text-transform: capitalize;
+}
+div.analytics-column #secForms .sections_forms .filterDiv {
+  background: #f7f7f9 none repeat scroll 0 0;
+  border: 1px solid #ddd;
+  margin-bottom: 0;
+  padding: 10px;
+}
+div.analytics-column .filter-div .filter_note,
+div.op-spec-div .filter-div .filter_note  {
+  font-family: gotham book;
+  font-size: 12px;
+}
+div.op-spec-div .filter-div .filter_note {
+  float: left;
+  margin-left: 5px;
+}
+div.analytics-column #secForms .sections_forms .form-group.andDiv, 
+div.analytics-column .filterForm .form-group.andDiv,
+div.op-spec-div .sections_forms .form-group.andDiv {
+  display: none;
+}
+div.analytics-column #secForms .sections_forms input.remove-me,
+div.op-spec-div .sections_forms input.remove-me {
+  margin-left: 0;
+}
+div.analytics-column #secForms .sections_forms input.remove-me, 
+div.analytics-column .filterForm .filterDiv input.remove-me {
+  background-color: transparent !important;
+  background-image: url("/themes/drupal8_zymphonies_theme/css/icons/cross_icon.png") !important;
+  background-position: center center !important;
+  background-repeat: no-repeat;
+  background-size: 20px auto !important;
+  border-color: transparent !important;
+  color: transparent !important;
+  height: auto;
+  left: 5px;
+  padding: 9px 9px 5px 15px !important;
+  position: relative;
+  top: 0;
+}
+div.op-spec-div .sections_forms input.remove-me {
+  background-color: transparent !important;
+  background-image: url("/themes/drupal8_zymphonies_theme/css/icons/cross_icon.png") !important;
+  background-position: center center !important;
+  background-repeat: no-repeat;
+  background-size: 17px auto !important;
+  border-color: transparent !important;
+  color: transparent !important;
+  margin-left: 0 !important;
+  width: 10px;
+}
+div.analytics-column #secForms .sections_forms .filterDiv.first .form-control, 
+div.analytics-column .filterForm .filterDiv:first-child .form-control,
+div.op-spec-div .sections_forms .filterDiv.first .form-control {
+  margin-right: 1px;
+}
+div.analytics-column #secForms .sections_forms .filterDiv .form-control, 
+div.analytics-column .filterForm .filterDiv .form-control,
+div.op-spec-div .sections_forms .filterDiv .form-control {
+  font-size: 10px;
+  margin-right: 4px;
+}
+div.op-spec-div .sections_forms .filterDiv input[type="text"].form-control {
+  height: 30px;
+}
+div.analytics-column #secForms .sections_forms .add-more-cont {
+  font-family: gotham book;	
+  margin-top: 5px;
+}
+div.analytics-column #secForms .sections_forms .add-more-cont a:hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+div.analytics-column #charts ul.nav-tabs li, 
+div.analytics-column #charts .rss-feed {
+  margin: auto;
+}
+div.analytics-column #charts .rss-feed {
+  float: left;
+  padding-top: 5px;
+  width: 100%;
+}
+div.analytics-column .nav-tabs li a {
+  padding: 5px 15px !important;
+}
+div.analytics-column .nav-tabs li.active a {
+  color: #19c2c8 !important;
+}
+div.analytics-column .tab-content .alert {
+  float: left;
+  border-radius: 4px;
+  font-family: gotham book;
+  font-size: 12px;
+  margin-bottom: 0;
+  margin-top: 10px;
+  padding: 5px 15px;
+  width: 100%;
+}
+div.analytics-column .tab-content .alert a.close {
+  margin-top: 3px;
+}
+#form-cont #secForms .alert-dismissable .close, 
+#form-cont #secForms .alert-dismissible .close {
+  right: 0;
+}
+div.analytics-column .charts-list.filled-tabs {
+  padding-top: 10px;
+}
+div.analytics-column #charts .nav-tabs {
+  max-height: 590px;
+  padding: 0;
+}
+div.analytics-column #tabs ul.nav-tabs li a {
+  background-position: 5px center !important;
+  background-size: 14px auto !important;
+  border-bottom: 1px solid #e6e7e9;
+  border-radius: 0;
+  font-weight: normal;
+  height: auto;
+  line-height: 16px;
+  min-height: 28px;
+  outline: medium none;
+  padding: 5px 5px 5px 25px !important;
+  text-transform: capitalize;
+  width: 100%;
+}
+div.analytics-column #tabs .nav-tabs > li.active > a {
+  outline: medium none;
+}
+div.analytics-column #tabs ul.nav-tabs li a i {
+  cursor: pointer;
+  display: none;
+  float: right;
+  font-size: 13px;
+  padding-right: 8px;
+  padding-top: 0;
+  position: absolute;
+  right: 10px;
+  top: 28%;
+}
+div.bi_plot {
+  padding-top: 15px;
+}
+div.bi_plot,
+div.bi_plot div.svg-container,
+div.biplot,
+div.biplot div.svg-container {
+  min-width: 715px !important;
+  padding-bottom: 15px;
+}
+div.bi_plot .js-plotly-plot .plotly .main-svg,
+div.biplot .js-plotly-plot .plotly .main-svg  {
+  min-width: 700px !important;
+}
+div.bi_plot .js-plotly-plot .plotly .modebar ,
+div.biplot .js-plotly-plot .plotly .modebar {
+  top: -16px;
+  left: 45px;
+}
+div.pie_chart .svg-container,
+div.pie_chart .svg-container .main-svg  {
+  min-height: 500px !important;
+}
+div.bi_compare {
+  min-width: 1500px !important;
+}
+#geomap_filter {
+  margin-top: -15px;
+}
+div#charts #tabs .no-charts {
+  font-size: 12px;
+  margin-top: -8px;
+}
+.grid-stack {
+  margin-top: 10px;
+}
+.grid-stack > .grid-stack-item > .grid-stack-item-content {
+  border-radius: 0;
+  overflow-y: hidden !important;
+}
+.grid-stack-item-content .js-plotly-plot .plotly .modebar {
+  right: 3%;
+}
+.grid-stack-item-content .panel-heading {
+  padding: 5px 15px;
+  text-transform: capitalize;
+}
+.grid-stack-item-content .panel-body {
+  padding: 0;
+}
+.tab-content #design {
+  /*display: none !important;*/
+}
+#chart-edit-modal .modal-dialog {
+  margin-left: 4px;
+  margin-right: 0;
+  top: 0 !important;
+  width: 97%;
+}
+/**/
+/*.node-report-operation .top-page-menu ul li a#save_report,
+.node-report-operation .top-page-menu ul li a#save_report:hover {
+  background-image: url('../includes/img/save-chart.png');
+  background-position: left center;
+  background-repeat: no-repeat;
+  font-size: 0;
+  width: 37px;
+}
+.node-report-operation .top-page-menu ul li a#btn-clear-report,
+.node-report-operation .top-page-menu ul li a#btn-clear-report:hover {
+  background-image: url('../includes/img/clear.png');
+  background-position: left center;
+  background-repeat: no-repeat;
+  font-size: 0;
+  width: 37px;
+}
+.node-report-operation .top-page-menu ul li a#compare_btn,
+.node-report-operation .top-page-menu ul li a#compare_btn:hover {
+  background-image: url('../includes/img/compare.png');
+  background-position: left center;
+  background-repeat: no-repeat;
+  font-size: 0;
+  width: 37px;
+}*/
+#htmlwidget_container {
+  width: 100%;
+}
+#htmlwidget_container .html-widget {
+  height: auto;
+}
+.chart-mod-cont {
+  float: left;
+  width: 100%;
+}
+.chart-mod-cont .modal-body {
+  overflow: auto;
+  height: 540px;
+}
+#save_report {
+  display: none;
+}
+#btn-clear-report {
+  padding-left: 0;
+}
+#newSelects #section2.form-group, 
+#newSelects #section4.form-group {
+  padding-left: 3px;
+  padding-right: 0;
+}
+#newSelects #section1.form-group, 
+#newSelects #section3.form-group {
+  padding-left: 0;
+  padding-right: 3px;
+}
+#compareModal button.close {
+  margin-top: 0;
+  opacity: 1;
+}
+#compareModal .modal-footer {
+  padding-bottom: 10px;
+}
+#compareModal .modal-footer .form-group {
+  margin-bottom: 0 !important;
+}
+/*div[id^="compare"] div.panel-heading span.rem-chart {
+  display: none;
+}*/
+div.graphical-area div[id^="compare"] {
+  margin-bottom: 0;
+}
+@media (min-width: 768px) and (max-width: 1366px)  and (orientation: landscape) { 
+  .xl-report-display-tpl-row #secForms .sections_forms .filterDiv .form-control:last-child {
+    margin-right: 0;
+  }
+  .xl-report-display-tpl-row #secForms .sections_forms input.remove-me {
+	margin-left: 0;
+  }
+}
+@media (min-width: 800px) and (max-width: 1280px) and (orientation: landscape) {
+  div.analytics-column div.modal-dialog {
+	max-width: 500px;
+  }
+}
+#alert-msg {
+  color: red;
+}
+#chart-div .close-chart-edit {
+  color: #ccc;
+  font-size: 20px;
+  float: right;
+  margin-right: 5px;
+  margin-top: 3px;
+  cursor: pointer;
+}
+#exTab1 .close-nav-tabs {
+  color: #ccc;
+  font-size: 20px;
+  float: right;
+  margin-right: 3px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.xl-report-display-tpl-row .graphical-area .panel-default .panel-heading span,
+.xl-report-display-tpl-row .graphical-area .panel-default .panel-heading a {
+  cursor: pointer;
+  color: #78787a;
+}
+#compare_btn {
+  display: none;
+}
+.graph-holder {
+  background: #fff none repeat scroll 0 0;
+}
+.input_fields_wrap textarea {
+  padding: 5px;
+  width: 100%;
+}
+.analytics-main-container {
+  overflow-y: auto;
+  height: 590px;
+  overflow-x: hidden;
+  position: relative;
+}
+.analytics-textarea {
+  position: relative;
+}
+.remove_field {
+  background: rgba(0, 0, 0, 0) url("/themes/drupal8_zymphonies_theme/css/icons/cross_icon.png") no-repeat scroll 0 0;
+  font-size: 0;
+  position: absolute;
+  right: -5px;
+  width: 21px;
+  background-size: 17px;
+}
+#elements_list_ul {
+  padding-right: 0;
+  width: 100%;
+}
+#elements_list_ul li span {
+  color: #1dbcea;
+  margin-right: 5px;
+}
+#elements_list_ul li:hover {
+  background-color: #e6e7e9;
+}
+#elements_list_ul li {
+  border: 1px solid #e6e7e9;
+  border-radius: 4px;
+  color: #78787a;
+  cursor: pointer;
+  font-family: gotham book;
+  font-size: 11px;
+  padding: 2px 10px;
+  width: 100%;
+  margin-bottom: 2px;
+}
+.input_fields_wrap {
+  /*margin: 5px;*/
+}
+#charts_list_ul {
+  display: none;
+}
+#operator-area2 {
+  height: 100px !important;
+  border-radius: 0 !important;
+}
+.fine_uploader_img {
+  height: 195px;
+  padding: 5px;
+  width: 100%;
+}
+.img_div {
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+.img_div .img-body {
+  border: 1px solid #CCCCCC;
+}
+/*.rem_img_div {
+  background: rgba(0, 0, 0, 0) url("/themes/drupal8_zymphonies_theme/css/icons/cross_icon.png") no-repeat scroll 0 0 / 17px auto;
+  font-size: 0;
+  position: absolute;
+  right: 15px;
+  top: 5px;
+  width: 21px;
+}*/
+#txt-blocks-controls, #img-blocks-controls {
+  background: #f0f0f0;
+  padding-left: 10px;
+  padding-right: 5px;
+  text-align: right;
+}
+.analytics-textarea-main, .img_div {
+  margin: 5px;
+}
+#txt-blocks-controls .glyphicon, #img-blocks-controls .glyphicon {
+  color: #78787a;
+  cursor: pointer;
+  margin-left: 3px;
+  margin-right: 3px;
+  position: relative;
+  top: 4px;
+}
+div.mathjax {
+  border: 1px solid #c7c7c7;
+  padding: 5px;
+}
+.anatxt-area-edit {
+  margin-top: 2px;
+}
+.analytics-textarea textarea {
+    width: 100%;
+}
+
+.graphical-area .panel-heading .glyphicon {
+  font-size: 14px !important;
+  padding-left: 3px;
+  padding-right: 3px;
+  position: relative;
+  top: 4px;
+}
+
+#txt-blocks-controls .blocks-heading, #img-blocks-controls .blocks-heading {
+  float: left;
+  font-size: 13px;
+  padding-left: 2px;
+  padding-top: 1px;
+}
+.mce-container-body.mce-window-body.mce-abs-layout {
+  height: 450px !important;
+}
+.refined-topscroll {
+  display: none;
+}
+.panel-body > div {
+  max-height: 275px !important;
+}
+.qq-upload-list-selector.qq-upload-list {
+  box-shadow: none;
+  overflow: hidden;
+}
+.qq-upload-success {
+  max-height: 85px !important;
+}
+.qq-progress-bar-selector, .qq-drop-processing-spinner {
+  display: none !important;
+}
+.refinedResults {
+  padding: 5px;
+  display: none;
+}
+.refinedResults .dataTables_wrapper .dataTables_filter .input-sm {
+    width: 125px;
+}
+.analytics-textarea-main br {
+  display: none;
+}
+.analytics-textarea-main h1 {
+  margin-top: 13px;
+}
+
+
+

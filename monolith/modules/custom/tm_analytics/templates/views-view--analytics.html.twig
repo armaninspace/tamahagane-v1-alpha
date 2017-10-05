@@ -1,0 +1,682 @@
+{#
+/**
+ * @file
+ * Theme override for a main view template.
+ *
+ * Available variables:
+ * - attributes: Remaining HTML attributes for the element.
+ * - css_name: A css-safe version of the view name.
+ * - css_class: The user-specified classes names, if any.
+ * - header: The optional header.
+ * - footer: The optional footer.
+ * - rows: The results of the view query, if any.
+ * - empty: The content to display if there are no rows.
+ * - pager: The optional pager next/prev links to display.
+ * - exposed: Exposed widget form/info to display.
+ * - feed_icons: Optional feed icons to display.
+ * - more: An optional link to the next page of results.
+ * - title: Title of the view, only used when displaying in the admin preview.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the view title.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the view title.
+ * - attachment_before: An optional attachment view to be displayed before the
+ *   view content.
+ * - attachment_after: An optional attachment view to be displayed after the
+ *   view content.
+ * - dom_id: Unique id for every view being printed to give unique class for
+ *   Javascript.
+ *
+ * @see template_preprocess_views_view()
+ */
+#}
+{%
+  set classes = [
+	'view',
+	'view-' ~ id|clean_class,
+	'view-id-' ~ id,
+	'view-display-id-' ~ display_id,
+	dom_id ? 'js-view-dom-id-' ~ dom_id,
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+
+  {{ attach_library('tm_analytics/tm_analytics') }}
+  {#{{ attach_library('tm_2dscatterplot/tm_2dscatterplot') }}
+  {{ attach_library('tm_scatterplot/tm_scatterplot') }}
+  {{ attach_library('tm_linechart/tm_linechart') }}
+  {{ attach_library('tm_areachart/tm_areachart') }}
+  {{ attach_library('tm_surfacechart/tm_surfacechart') }}
+  {{ attach_library('tm_bubblechart/tm_bubblechart') }}
+  {{ attach_library('tm_histogram/tm_histogram') }}
+  {{ attach_library('tm_boxplot/tm_boxplot') }}
+  {{ attach_library('tm_spmatrix/tm_spmatrix') }}
+  {{ attach_library('tm_cmatrix/tm_cmatrix') }}
+  {{ attach_library('mc_devmode/mc_devmode_general') }}
+  {{ attach_library('tm_crosstabs/tm_crosstabs') }}
+  {{ attach_library('tm_piechart/tm_piechart') }}
+  {{ attach_library('tm_barchart/tm_barchart') }}
+  {{ attach_library('tm_wordcloud/tm_wordcloud') }}
+  {{ attach_library('tm_heatmap/tm_heatmap') }}
+  {{ attach_library('tm_donutchart/tm_donutchart') }}
+  {{ attach_library('tm_narrativetext/tm_narrativetext') }}
+  {{ attach_library('tm_biplot/tm_biplot') }}
+  {{ attach_library('tm_trendplot/tm_trendplot') }}
+  {{ attach_library('tm_dtree/tm_dtree') }}
+  {{ attach_library('tm_lreg/tm_lreg') }}
+  {{ attach_library('tm_rankingplot/tm_rankingplot') }}
+  {{ attach_library('tm_clusteranalysis/tm_clusteranalysis') }}
+  {{ attach_library('tm_geomap/tm_geomap') }}
+#}
+
+  <div class="node-report-operation clearfix">
+    <div class="top-page-menu">
+      <div class="navbar-top-page">
+        <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+          <div id="operator-rel2" class="closed">
+            <div id="operator-area2" class="analytic_col">
+              <ul class="nav nav-tabs charts-ul">
+                <li><a href="#tm_grid" >Tm Grid 1</a></li>
+                <li><a href="#tm_grid2" >Tm Grid 2</a></li>
+                <li class="active"><a href="#charts" >Charts</a></li>
+              </ul>
+              <div class="tab-content">
+                <div id="tm_grid" class="tab-pane fade">
+
+                </div>
+                <div id="tm_grid2" class="tab-pane fade">
+
+                </div>
+                <div id="charts"  class="tab-pane fade">
+                  {#<div class="rss-feed">
+                    <input  id="searchbox" class="form-control " autocomplete="off" role="textbox" placeholder="Search Chart " aria-label="Search" type="text">
+                  </div>#}
+                  <div id="tabs">
+                    <ul id="charts_list_ul" class="nav nav-tabs charts-list" style="overflow: auto;">
+                      <div class="loadimg"></div>
+                    </ul>
+                    <ul id="elements_list_ul" class="" style="overflow: auto;">
+                      <li id="charts-add-text" class="list-group-item"><span class="glyphicon glyphicon-text-width"></span>Paragraph</li>
+                      <li id="charts-add-img" class="list-group-item"><span class="glyphicon glyphicon glyphicon-file"></span>Images</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="analytics-side closed" data-toggle="tooltip" title="Expand"></div>
+            <div class="user-nav-slide2 charts-nav">
+              {#<span class="charts-text">Charts <span class="caret closed"></span></span>#}
+              <span class="charts-text"><span class="glyphicon glyphicon-plus"></span></span>
+              <!--button class="btn" id="operator-btn2"><span class="glyphicon glyphicon-plus"></span></button-->
+            </div>
+          </div>
+          <div id="form-cont" class="tab-content closed">
+            <div id="design" class="tab-pane fade ">
+              <span class="glyphicon glyphicon-remove-circle close-chart-edit"></span>
+              <div style="" id="secForms">
+                <div class="loadimg"> </div>
+              </div>
+            </div>
+          </div>
+		  <div class="pull-left">
+			<img class="graphLoader-save" src="/sites/default/files/graphloader.gif">
+			
+			  <ul class="links">
+				<li><a href="#" id="save_report"  class="save-report"> Save </a></li>
+				<li><a id="btn-clear-report" class="">Clear</a></li>
+				<li><a id="compare_btn"> Compare Charts</a></li>
+			   <!-- <li><a id="compare_btn" type="" class="" data-toggle="modal" data-target="#compareModal"> Compare Results</a></li>-->
+			  </ul>
+			
+		  </div>
+		  
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-4">
+      <div class="dropdown reportDropdown">
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        </ul>
+      </div>
+    </div>
+    <div class="col-xs-6 col-md-8 aboveReport"> </div>
+  </div><!--end node report operations-->
+
+  <div class="xl-report-display-tpl-row clearfix">
+    <!--div class="col-xs-12 col-md-4 ">
+      <div class="report-title">
+        <div class="form-group">
+          <input class="form-control" id="report_id" name="report_id" value="" type="hidden">
+          <input class="form-control" id="curr_path" name="curr_path" value="" type="hidden">
+        </div>
+      </div>
+    </div-->
+    <div class="col-xs-12 col-md-12 graph-holder">
+      <div hidden id="chartsdata">
+	    <textarea id="datacharts"></textarea>
+	    <textarea id="delcharts"></textarea>
+      <textarea id="imgsDivData"></textarea>
+	  </div>
+      <div class="analytics-main-container">
+        <div class="input_fields_wrap">
+          {#<button class="add_field_button">Add More Fields</button>#}
+          {#<div><textarea id="analytics-textarea-1"></textarea></div>#}
+        </div>
+        <div class="graphical-area tab-content">
+        </div>
+      </div>
+      <input type="hidden" name="analytics-textarea-count" id="analytics-textarea-count" value="1">
+
+    </div>
+  </div>
+  <!-- Compare Modal -->
+  <div id="compareModal" class="modal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <form class="" id="compare_chart_form" method="post" style="display: block;">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Compare Results</h4>
+        </div>
+        <div class="modal-body compare-body">
+          <div class="form-group">
+            <label for="compare_title" class="control-label">Title:<span
+                        class="form-required" title="This field is required."></span></label>
+            <input type="text" class="form-control required" id="compare_title"
+                   name="compare_title" required pattern=".*\S+.*">
+          </div>
+          <div class="form-group">
+            <label for="" class="control-label">Select Rows & Columns</label>
+            <select class="form-control" id="compare_rows_col">
+              <option value="">Select Rows & Columns</option>
+              <option value="1">1 X 2</option>
+              <option value="2">2 X 2</option>
+            </select>
+          </div>
+          <div id="newSelects" class="form-group">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="form-group">
+            <input style="display: none" id="compareSubmit" class="btn btn-default btn-submit" name="compareSubmit" value="Submit" type="submit">
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="chartsmsgModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Message!</h4>
+          <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+        </div>
+        <div class="modal-body">
+          <div id="msgSaveId">
+            <h6>Charts saved successfully.</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade"  role="dialog" id="clear-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+          <h4 class="modal-title">Confirm Clear</h4>
+        </div>
+        <div class="modal-body">
+          <div id="msg">
+            <h6>Are you sure you want to clear all data ?</h6>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" id="btn-yes">Yes</button>
+          <button type="button" class="btn btn-default" id="btn-no">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade"  role="dialog" id="del-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+          <h4 class="modal-title">Confirm Delete</h4>
+        </div>
+        <div class="modal-body">
+          <input id="img_id" type="hidden" name="img_id" value="">
+          <div id="msgDel">
+            <h6>Are you sure to want to delete this chart?</h6>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" id="modal-btn-yes">Yes</button>
+          <button type="button" class="btn btn-default" id="modal-btn-no">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade"  role="dialog" id="save-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+          <h4 class="modal-title">Confirm Save</h4>
+        </div>
+        <div class="modal-body">
+          <div id="msg">
+            <h6>Are you sure you want to save without submit form ?</h6>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" id="btn-yes">Yes</button>
+          <button type="button" class="btn btn-default" id="btn-no">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade"  role="dialog" id="dataset-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+          <h4 class="modal-title">Select Dataset!</h4>
+        </div>
+        <div class="modal-body">
+          <div id="msg">
+            <h6>Please select dataset</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade"  role="dialog" id="error-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+          <h4 class="modal-title">Error!</h4>
+        </div>
+        <div class="modal-body">
+          <div id="msg">
+            <h6>Error!! related dataset not found</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade"  role="dialog" id="sc-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+          <h4 class="modal-title">Error!</h4>
+        </div>
+        <div class="modal-body">
+          <div id="msg">
+            <h6>No special characters allowed</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade"  role="dialog" id="filter-modal1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+          <h4 class="modal-title">Error!</h4>
+        </div>
+        <div class="modal-body">
+          <div id="msg">
+            <h6>Filter Error!! operator mismatch with selected factor. only equal or not-equal allowed.</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade"  role="dialog" id="filter-modal2">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+          <h4 class="modal-title">Error!</h4>
+        </div>
+        <div class="modal-body">
+          <div id="msg">
+            <h6>Filter Error!! Please enter numeric value for numeric filter.</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade"  role="dialog" id="filter-modal3">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+          <h4 class="modal-title">Error!</h4>
+        </div>
+        <div class="modal-body">
+          <div id="msg">
+            <h6>Filter Error!! greater than or less than not allowed with factor.</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade"  role="dialog" id="filter-modal4">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+          <h4 class="modal-title">Error!</h4>
+        </div>
+        <div class="modal-body">
+          <div id="msg">
+            <h6>Filter Error!! filters must be unique.</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade"  role="dialog" id="title-empty-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+          <h4 class="modal-title">Error!</h4>
+        </div>
+        <div class="modal-body">
+          <div id="msg">
+            <h6>Title should not be empty.</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade"  role="dialog" id="two-chart-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+          <h4 class="modal-title">Error!</h4>
+        </div>
+        <div class="modal-body">
+          <div id="msg">
+            <h6>At least two charts required to compare!</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Charts Modals-->
+  <div class="modal fade"  role="dialog" id="xy-col-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+          <h4 class="modal-title">Error!</h4>
+        </div>
+        <div class="modal-body">
+          <div id="msg">
+            <h6>x and y columns should not be same.</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade"  role="dialog" id="col-op-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+          <h4 class="modal-title">Error!</h4>
+        </div>
+        <div class="modal-body">
+          <div id="msg">
+            <h6>Column name & operators are required to apply filter.</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade"  role="dialog" id="two-var-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+          <h4 class="modal-title">Error!</h4>
+        </div>
+        <div class="modal-body">
+          <div id="msg">
+            <h6>Select atleast two variables.</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade"  role="dialog" id="color-col-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+          <h4 class="modal-title">Error!</h4>
+        </div>
+        <div class="modal-body">
+          <div id="msg">
+            <h6>Color column should be different from x, y and z columns.</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade"  role="dialog" id="not-same-col-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+          <h4 class="modal-title">Error!</h4>
+        </div>
+        <div class="modal-body">
+          <div id="msg">
+            <h6>Columns should not be same.</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade"  role="dialog" id="factor-col-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+          <h4 class="modal-title">Error!</h4>
+        </div>
+        <div class="modal-body">
+          <div id="msg">
+            <h6>Atleast one factor column required to proceed.</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade"  role="dialog" id="predict-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+          <h4 class="modal-title">Error!</h4>
+        </div>
+        <div class="modal-body">
+          <div id="msg">
+            <h6>Outcome and predictors columns should not be same.</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade"  role="dialog" id="lat-long-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+          <h4 class="modal-title">Error!</h4>
+        </div>
+        <div class="modal-body">
+          <div id="msg">
+            <h6>Select suitable and different columns for lattitude and longitude.</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade"  role="dialog" id="html-cont-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+          <h4 class="modal-title">Error!</h4>
+        </div>
+        <div class="modal-body">
+          <div id="msg">
+            <h6>Must provide with an HTML content to proceed.</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade"  role="dialog" id="inputs-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+          <h4 class="modal-title">Error!</h4>
+        </div>
+        <div class="modal-body">
+          <div id="msg">
+            <h6>You can't select more than 10 inputs for Select Variables.</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade"  role="dialog" id="inputs-modal2">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+          <h4 class="modal-title">Error!</h4>
+        </div>
+        <div class="modal-body">
+          <div id="msg">
+            <h6>You can't select more than 4 inputs for Select Predictor(s).</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade"  role="dialog" id="chart-edit-modal" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content chart-mod-cont">
+        <div class="modal-header">
+          <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+          <h4 class="modal-title">Edit Chart</h4>
+        </div>
+        <div class="modal-body">
+          <div id="chart-edit-area">
+            <div class="dropdown selectpicker select-chart-dropbox hidden">
+              <label class="control-label">Visualization Type</label>
+              <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">New Section
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu custom_dropdown"> <!--- Charts Dropdown Menu (CDM) -->
+                <div class="rss-feed">
+                  <input placeholder="Search" class="form-control live-search-box" autocomplete="off" role="textbox" aria-label="Search" type="text">
+                </div>
+                <ul id="selected1">
+                  <li data-group-name="Selected Charts" group-name="Data Visualization" class="dropdown-header">Selected Charts</li>
+                </ul>
+                <ul id="other" class="live-search-list">
+                  <li class="dropdown-header" data-group-name="Data Visualization" group-name="Data Visualization">Data Visualization</li>
+                  <li class="dropdown-content" data-search-term="3dscatter plot" group-name="Data Visualization" order-list="1"><a class="showForm scatterplot initialize" data-whatever="Scatter Plot" >3D Scatter Plot</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                  <li class="dropdown-content" data-search-term="2dscatter plot" group-name="Data Visualization" order-list="2"><a class="showForm ddscatterplot initialize" data-whatever="2dScatter Plot" >2D Scatter Plot</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                  <li class="dropdown-content" data-search-term="area chart" group-name="Data Visualization" order-list="3" ><a class="showForm areachart initialize" data-whatever="Area Chart" >Area Chart</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                  <li class="dropdown-content" data-search-term="surface chart" group-name="Data Visualization" order-list="4"><a class="showForm surfacechart initialize" data-whatever="Surface Chart" >Surface Chart</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                  <li class="dropdown-content" data-search-term="bubble chart" group-name="Data Visualization" order-list="5"><a class="showForm bubblechart initialize" data-whatever="Bubble Chart" >Bubble Chart</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                  <li class="dropdown-content" data-search-term="line chart" group-name="Data Visualization" order-list="6"><a class="showForm linechart initialize" data-whatever="Line Chart" >Line Chart</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                  <li class="dropdown-content" data-search-term="histogram" group-name="Data Visualization" order-list="7"><a class="showForm histogram initialize" data-whatever="Histogram" >Histogram</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                  <li class="dropdown-content" data-search-term="boxplot" group-name="Data Visualization" order-list="8"><a class="showForm boxplot initialize" data-whatever="Boxplot" >Boxplot</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                  <li class="dropdown-content" data-search-term="cross tabs" group-name="Data Visualization" order-list="9"><a class="showForm crosstabs initialize" data-whatever="Cross Tabs" >Cross Tabs</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                  <li class="dropdown-content" data-search-term="spmatrix" group-name="Data Visualization" order-list="10"><a class="showForm spmatrixchart initialize" data-whatever="Spmatrix" >Scatter Plot Matrix</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                  <li class="dropdown-content" data-search-term="pie chart" group-name="Data Visualization" order-list="11"><a  class="showForm piechart initialize" data-whatever="Pie Chart">Pie Chart</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                  <li class="dropdown-content" data-search-term="cmatrix" group-name="Data Visualization" order-list="12"><a class="showForm cmatrixchart initialize" data-whatever="cmatrix" data-reportid="">Correlation Plot Matrix</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                  <li class="dropdown-content" data-search-term="narrative text" group-name="Data Visualization" order-list="13"><a class="showForm narrativetext initialize" data-whatever="Narrative Text">Narrative Text</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                  <li class="dropdown-content" data-search-term="barchart" group-name="Data Visualization" order-list="14"><a class="showForm barchart initialize" data-whatever="barchart" >Bar Chart</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                  <li class="dropdown-content" data-search-term="word cloud" group-name="Data Visualization" order-list="15"><a class="showForm wordcloud initialize" data-whatever="Word Cloud">Word Cloud</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                  <li class="dropdown-content" data-search-term="heatmap" group-name="Data Visualization" order-list="16"><a class="showForm heatmapchart initialize" data-whatever="heatmap" >Heatmap</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                  <li class="dropdown-content" data-search-term="donut chart" group-name="Data Visualization" order-list="17"><a class="showForm donutchart initialize" data-whatever="Donut Chart">Donut Chart</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                  <li class="dropdown-content" data-search-term="biplot" group-name="Data Visualization" order-list="18"><a class="showForm biplot initialize" data-whatever="biplot" >Biplot</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                  <li class="dropdown-content" data-search-term="trend plot" group-name="Data Visualization" order-list="19"><a class="showForm trendplot initialize" data-whatever="Trend Plot">Trend Plot</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                  <li class="dropdown-content" data-search-term="ranking plot" group-name="Data Visualization" order-list="20"><a class="showForm rankingplot initialize" data-whatever="Ranking Plot">Ranking Plot</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                  <li class="dropdown-content" data-search-term="dtree" group-name="Data Visualization" order-list="21"><a class="showForm dtree initialize" data-whatever="dtree" >Decision Tree</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                  <li class="dropdown-content" data-search-term="topic based text clustering" group-name="NLP" order-list="22"><a class="showForm clusteranalysis initialize" data-whatever="Topic Based Text Clustering">Topic Based Text Clustering</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                  <li class="dropdown-content" data-search-term="lreg" group-name="Data Visualization" order-list="23"><a class="showForm lregchart initialize" data-whatever="lreg" >Linear Regression</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                  <li class="dropdown-content" data-search-term="geo map" group-name="Geo" order-list="24"><a class="showForm geomap initialize" data-whatever="Geo Map">Geo</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                </ul>
+              </ul>
+            </div>
+            <div style="" id="secForms">
+              <div class="loadimg"> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/template" id="qq-template-gallery">
+  <div class="qq-uploader-selector qq-uploader qq-gallery" qq-drop-area-text="">
+
+    <div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>
+      <span class="qq-upload-drop-area-text-selector"></span>
+    </div>
+    <div class="qq-upload-button-selector qq-upload-button">
+      <div>Upload Image</div>
+    </div>
+
+    <ul class="qq-upload-list-selector qq-upload-list" role="region" aria-live="polite" aria-relevant="additions removals">
+      <li>
+        <div class="qq-thumbnail-wrapper">
+          <img class="qq-thumbnail-selector" qq-max-size="120" qq-server-scale>
+        </div>
+
+        <span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>
+        <span class="qq-upload-spinner-selector qq-upload-spinner"></span>
+
+        <button type="button" class="qq-upload-cancel-selector qq-upload-cancel">X</button>
+
+
+        <div class="qq-file-info">
+          <div class="qq-file-name">
+            <span class="qq-upload-file-selector qq-upload-file"></span>
+            <span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>
+          </div>
+          <input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">
+          <span class="qq-upload-size-selector qq-upload-size"></span>
+          <button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">
+            <span class="qq-btn qq-delete-icon" aria-label="Delete">X</span>
+          </button>
+        </div>
+      </li>
+    </ul>
+
+  </div>
+</script>

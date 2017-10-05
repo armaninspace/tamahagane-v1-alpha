@@ -1,0 +1,14 @@
+type: module
+name: 'Display Suite Devel'
+description: 'Development functionality for Display Suite.'
+# core: 8.x
+package: 'Display Suite'
+dependencies:
+  - ds
+  - devel
+
+# Information added by Drupal.org packaging script on 2017-03-21
+version: '8.x-2.6+22-dev'
+core: '8.x'
+project: 'ds'
+datestamp: 1490105296

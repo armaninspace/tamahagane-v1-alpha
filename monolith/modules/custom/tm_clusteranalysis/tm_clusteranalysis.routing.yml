@@ -1,0 +1,16 @@
+tm_clusteranalysis.clusteranalysisform:
+  path: '/tm_clusteranalysis/add/form'
+  defaults:
+    _controller: '\Drupal\tm_clusteranalysis\Controller\ClusteranalysisController::addForm'
+    _title: 'AddForm'
+  requirements:
+    _permission: 'access content'
+
+tm_clusteranalysis.clusteranalysis_process_data:
+  path: '/tm_clusteranalysis/process/data'
+  defaults:
+    _controller: '\Drupal\tm_clusteranalysis\Controller\ClusteranalysisController::processData'
+    _title: 'ProcessData'
+  requirements:
+    _permission: 'access content'
+

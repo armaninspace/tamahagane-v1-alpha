@@ -1,0 +1,5 @@
+services:
+ tm_breadcrumb.breadcrumb:
+   class: Drupal\tm_breadcrumb\Breadcrumb\EasydrupalBreadcrumbBuilder
+   tags:
+     - { name: breadcrumb_builder, priority: 100 }

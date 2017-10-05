@@ -1,0 +1,31 @@
+<?php
+/**
+ * @file
+ * Contains tm_crosstabs.module.
+ */
+use Drupal\Core\Routing\RouteMatchInterface;
+/**
+ * Implements hook_help().
+ */
+function tm_crosstabs_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the tm_crosstabs module.
+    case 'help.page.tm_tm_crosstabs':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('A module to integrate Crosstabs in Tamahagane') . '</p>';
+      return $output;
+    default:
+  }
+}
+/**
+ * Implements hook_theme().
+ */
+function tm_crosstabs_theme() {
+  return [
+    'tm_crosstabs' => [
+      'template' => 'tm_crosstabs',
+      'render element' => 'children',
+    ],
+  ];
+}

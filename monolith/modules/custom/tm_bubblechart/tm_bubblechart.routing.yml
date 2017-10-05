@@ -1,0 +1,17 @@
+
+tm_bubblechart.areaform:
+  path: '/tm_bubblechart/add/form'
+  defaults:
+    _controller: '\Drupal\tm_bubblechart\Controller\BubblechartController::addForm'
+    _title: 'AddForm'
+  requirements:
+    _permission: 'access content'
+
+tm_bubblechart.bubblechart_process_data:
+  path: '/tm_bubblechart/process/data'
+  defaults:
+    _controller: '\Drupal\tm_bubblechart\Controller\BubblechartController::processData'
+    _title: 'ProcessData'
+  requirements:
+    _permission: 'access content'
+

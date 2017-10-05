@@ -1,0 +1,17 @@
+
+tm_2dscatterplot.scatterform:
+  path: '/tm_2dscatterplot/add/form'
+  defaults:
+    _controller: '\Drupal\tm_2dscatterplot\Controller\Scatterplot2dController::addForm'
+    _title: 'AddForm'
+  requirements:
+    _permission: 'access content'
+
+tm_2dscatterplot.scatterplot_process_data:
+  path: '/tm_2dscatterplot/process/data'
+  defaults:
+    _controller: '\Drupal\tm_2dscatterplot\Controller\Scatterplot2dController::processData'
+    _title: 'ProcessData'
+  requirements:
+    _permission: 'access content'
+

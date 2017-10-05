@@ -1,0 +1,63 @@
+tm_analytics.save_charts:
+  path: '/tm_analytics/save_charts'
+  defaults:
+    _controller: '\Drupal\tm_analytics\Controller\AnalyticsController::saveReport'
+    _title: 'SaveReport'
+  requirements:
+    _permission: 'access content'
+
+tm_analytics.show_charts:
+  path: '/tm_analytics/show_charts/{id}'
+  defaults:
+    _controller: '\Drupal\tm_analytics\Controller\AnalyticsController::showCharts'
+    _title: 'ShowCharts'
+  requirements:
+    _permission: 'access content'
+
+tm_analytics.check_group_status:
+  path: '/tm_analytics/check_group_status'
+  defaults:
+    _controller: '\Drupal\tm_analytics\Controller\AnalyticsController::checkGroupState'
+    _title: 'Check Group State'
+  requirements:
+    _permission: 'access content'
+
+tm_analytics.delete_charts:
+  path: '/tm_analytics/delete_charts'
+  defaults:
+    _controller: '\Drupal\tm_analytics\Controller\AnalyticsController::deleteCharts'
+    _title: 'DeleteCharts'
+  requirements:
+    _permission: 'access content'
+
+tm_analytics.clear_charts:
+  path: '/tm_analytics/clear_charts'
+  defaults:
+    _controller: '\Drupal\tm_analytics\Controller\AnalyticsController::clearCharts'
+    _title: 'ClearCharts'
+  requirements:
+    _permission: 'access content'
+
+tm_analytics.delete_uploaded_files:
+  path: '/tm_analytics/delete_img_files'
+  defaults:
+    _controller: '\Drupal\tm_analytics\Controller\AnalyticsController::deleteImgFiles'
+    _title: 'DeleteFiles'
+  requirements:
+    _permission: 'access content'
+
+tm_analytics.tm_sketch_upload_file:
+  path: '/upload-file'
+  defaults:
+    _controller: '\Drupal\tm_analytics\Controller\TmSketchEndPointController::test'
+    _title: 'TmSketchUploadFile'
+  requirements:
+    _permission: 'access content'
+tm_analytics.tm_sketch_delete_file:
+  path: '/delete/{file_name}'
+  methods:  [DELETE]
+  defaults:
+    _controller: '\Drupal\tm_analytics\Controller\TmSketchEndPointController::test'
+    _title: 'TmSketchUploadFile'
+  requirements:
+    _permission: 'access content'

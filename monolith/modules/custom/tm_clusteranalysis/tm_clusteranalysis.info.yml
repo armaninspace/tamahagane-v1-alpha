@@ -1,0 +1,5 @@
+name: TM Cluster analysis
+type: module
+description: A module to integrate Cluster analysis in Tamahagane
+core: 8.x
+package: Tamahagane

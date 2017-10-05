@@ -1,0 +1,5 @@
+name: TM Wordcloud
+type: module
+description: A module to integrate Wordcloud in Tamahagane
+core: 8.x
+package: Tamahagane

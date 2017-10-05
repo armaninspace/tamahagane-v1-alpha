@@ -1,0 +1,182 @@
+.path-mc-devmode {
+	
+}
+.path-mc-devmode #devTabs {
+  text-align:center;
+  position: relative;
+}
+.path-mc-devmode #devTabs .nav-tabs {
+  display: inline-block;
+}
+.path-mc-devmode #devTabs .go-back-wrapper {
+  left: 24px;
+  position: absolute;
+}
+.path-mc-devmode #devTabs .go-back-wrapper .btn,
+.path-mc-devmode #inner_tabs_content .export-wrapper .btn {
+  padding-top: 6px;
+}
+.path-mc-devmode #devTabs .nav-tabs {
+  display: inline-block;
+}
+.path-mc-devmode #devTabs .nav-tabs li.rexample,
+.path-mc-devmode #devTabs .nav-tabs li.data {
+  display: none;
+}
+.path-mc-devmode #devTabs .nav-tabs li, 
+.path-mc-devmode #devTabs .nav-tabs > li > a {
+  border-radius: 0 !important;
+}
+.path-mc-devmode #devTabs .nav-tabs li a {
+  background: #ccc;
+  padding: 10px 40px;
+}
+.path-mc-devmode #devTabs .nav-tabs li.active a {
+  background: #fff;
+}
+.path-mc-devmode .tab-pane {
+  min-height: 450px;
+}
+.path-mc-devmode .tab-pane .panel-body {
+  text-align:center;
+}
+.path-mc-devmode .tab-pane .panel-body {
+  text-align:center;
+}
+.path-mc-devmode .tab-pane .panel-body img {
+  display:inline-block;
+}
+.path-mc-devmode .tab-pane .panel-body .code-area {
+  text-align:left;
+}
+.path-mc-devmode .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+  width: 100%;
+}
+.path-mc-devmode .form-row {
+  margin-top:15px;
+  margin-bottom:0px;
+}
+.path-mc-devmode .dev-opt-col {
+  margin-top:10px;
+  margin-bottom:10px;
+}
+.path-mc-devmode .form-actions {
+  text-align: right;
+}
+textarea.new-json-data {
+  display:none;
+}
+.devmode-wrapper {
+  padding-right: 16px;
+  padding-top: 5px;
+}
+#visualization .control-label {
+  font-weight: normal !important;
+}
+.vis-left, .vis-right {
+  padding: 15px 10px !important;
+}
+.vis-left .panel-body {
+  padding-top: 0 !important;
+  text-align: left !important;
+}
+.vis-left .panel-body .form-actions {
+  margin-right: 0 !important;
+  margin-top: 3px;
+}
+.vis-right .pannel-inner {
+  margin-bottom: 26px;
+}
+.vis-right .panel-body, .vis-left .panel-body {
+  height: 537px;
+}
+body.path-mc-devmode-geomap .vis-right .panel-body, 
+body.path-mc-devmode-geomap .vis-left .panel-body {
+  height: auto;
+}
+.rconsole-wrapper .panel-heading {
+  text-align: left;
+}
+.path-mc-devmode #devTabs .nav-tabs li a {
+  /*margin-left: 2px;*/
+  margin-right: 2px;  
+}
+
+/** R console css **/
+
+.rconsol-form-wrapper {
+  float: left;
+}
+.rconsol-objects-wrapper {
+  float: left;
+  text-align: left;
+}
+.rconsol-objects-wrapper-main {
+  float: left;
+}
+.objects-wrapper {
+  border: 1px solid #ddd;
+  height: 300px;
+  overflow-y: auto;
+}
+.rconsol-form.panel-body .form-row.row {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.rconsol-form.panel-body {
+  padding-bottom: 0;
+  padding-top: 0;
+}
+.rconsoletxtarea {
+  border: medium none;
+  padding: 10px;
+}
+.run-rconsole-btn {
+  float: right;
+  margin-top: -7px;
+}
+.rconsol-objects-wrapper-main {
+  margin-left: 20px;	
+}
+.rconsol-objects-values .obj-name {
+  border-bottom: 1px solid #ddd;
+  padding-left: 10px;
+}
+body.path-mc-devmode-geomap .rconsol-chart-wrapper,
+body.path-mc-devmode-radarchart .rconsol-chart-wrapper {
+  float: left;
+  margin-left: 20px;
+}
+body.path-mc-devmode-radarchart .rconsol-chart-wrapper {
+  max-width: 460px;
+}
+body.path-mc-devmode-radarchart .rconsol-chart-wrapper canvas {
+  float: left;
+  max-width: 100%;
+}
+.gmapconsole {
+  width: 450px !important;
+  height: 456px !important;
+}
+.enviroment-variable-coloumn{
+  border-left: 1px solid #e7e7e7;
+}
+.objects-list{
+  list-style: none;
+  padding: 0;
+}
+.objects-list li{
+  text-align: left;
+}
+.times-wrapper{
+  border: 1px solid #ddd;
+  height: 150px;
+  overflow-y: auto;
+}
+.path-mc-devmode .enviroment-variable-coloumn .panel-body {
+  padding: 15px !important;
+}
+body.path-mc-devmode #inner_tabs_content .export-wrapper .btn .glyphicon {
+  right: 5px;
+  top: 3px;
+}

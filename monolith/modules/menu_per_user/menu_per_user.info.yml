@@ -1,0 +1,17 @@
+name: User Menu visibility
+type: module
+description: Show/Hide Menu items based on user id's.
+# core: 8.x
+package: Other
+dependencies:
+  - menu_ui
+  - menu_link_content
+conflicts:
+  - menu_item_visibility
+  - menu_per_role
+
+# Information added by Drupal.org packaging script on 2016-08-08
+version: '8.x-1.0'
+core: '8.x'
+project: 'menu_per_user'
+datestamp: 1470653340

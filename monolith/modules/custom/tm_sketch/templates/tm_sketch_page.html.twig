@@ -1,0 +1,880 @@
+{{ attach_library('tm_sketch/tm_sketch') }}
+{{ attach_library('tm_areachart/tm_areachart') }}
+{{ attach_library('tm_2dscatterplot/tm_2dscatterplot') }}
+{{ attach_library('tm_surfacechart/tm_surfacechart') }}
+{{ attach_library('tm_linechart/tm_linechart') }}
+{{ attach_library('tm_histogram/tm_histogram') }}
+{{ attach_library('tm_crosstabs/tm_crosstabs') }}
+{{ attach_library('tm_spmatrix/tm_spmatrix') }}
+{{ attach_library('tm_narrativetext/tm_narrativetext') }}
+{{ attach_library('tm_scatterplot/tm_scatterplot') }}
+{{ attach_library('tm_bubblechart/tm_bubblechart') }}
+{{ attach_library('tm_boxplot/tm_boxplot') }}
+{{ attach_library('tm_piechart/tm_piechart') }}
+{{ attach_library('tm_clusteranalysis/tm_clusteranalysis') }}
+
+<div class="row clearfix">
+  <div class="col-xs-12 col-md-4 sketch-coloumn">
+    <div id="sketch-btns" class="full-width">
+      <div class="user-nav-slide closed">
+        <button class="btn" id="operator-btn"><span class="glyphicon glyphicon-plus"></span></button>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="operator-checkbox">
+        <div class="slider round"></div>
+      </label>
+      <div class="node-ops">
+        {% if node_author == true %}
+        <button id="btn-clear" class="btn btn-default">Clear</button>
+        <button id="btn-group" class="btn btn-default">Group</button>
+        <button id="btn-ungroup" class="btn btn-default">Ungroup</button>
+        <button id="btn-import" class="btn btn-default">Import</button>
+        <button id="btn-export" class="btn btn-default">Export</button>
+        <button id="btn-save" class="btn btn-default">Save</button>
+        {# <img class="graphLoader-save" src="/sites/default/files/graphloader.gif"> #}
+        {% endif %}
+        <div class="sketch-side closed" data-toggle="tooltip" data-placement="top" title="Expand"></div>
+        <!--a id="btn-edit" class="use-ajax btn btn-default" data-dialog-type="modal" data-dialog-options='{"width":700}' href="/node/{{ graph_nid }}/edit">Edit</a-->
+        <!--a id="btn-del" class="use-ajax btn btn-default" data-dialog-type="modal" data-dialog-options='{"width":700}' href="/node/{{ graph_nid }}/delete">Delete</a-->
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div id="operator-rel" class="closed">
+          <div id="operator-area">
+            <div id="search-box">
+              <form>
+                <div class="form-group">
+                  <input type="text" name="searchOperator" class="form-control" id="searchOperator" placeholder="Search operator" value="">
+                </div>
+              </form>
+            </div>
+            <div id="stencil">
+              <!-- Pallet and operator will render here -->
+              {{ opt_markup }}
+            </div>
+          </div>
+          <div id="operator-main-div" class="">
+            <textarea name="deleted_datasets_area" id="deleted_datasets_area"></textarea>
+            <textarea name="temp_files_area" id="temp_files_area"></textarea>
+          </div>
+        </div>
+        <div id="operator-rel3" class="closed">
+          <div id="operator-area3">
+
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="modal-views">
+          <!-- Modal export-->
+          <div class="modal fade" id="expModal" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Export JSON</h4>
+			      <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+                </div>
+                <div class="modal-body">
+                  <div id="jsonOutId">
+                    <label>Note: Export sketch to import in a new sketch.</label>
+                    <textarea id="expTxt" class="form-control"></textarea>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" id="copyToClip">Copy to clipboard</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Modal Import-->
+          <div class="modal fade" id="impModal" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Import JSON</h4>
+			      <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+                </div>
+                <div class="modal-body">
+                  <div id="jsonInId">
+                    <textarea id="impTxt" class="form-control" required></textarea>
+                    <button id="btn-import-json" class="btn btn-default">Import</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Modal Save Graph-->
+
+          <div class="modal fade" id="csvModal" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-body">
+                  <div id="csvSaveId">
+                    <table id="csvTableId" class="display table table-striped">
+                      <thead>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="chartsModal" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Charts</h4>
+                </div>
+                <div class="modal-body">
+                  <div id="chartsmodalId">
+                    <div class="dropdown selectpicker select-chart-dropbox">
+                      <label class="control-label">Create New Chart</label>
+                      <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">New Section
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu custom_dropdown"> <!--- Charts Dropdown Menu (CDM) -->
+                        <div class="rss-feed">
+                          <input placeholder="Search" class="form-control live-search-box" autocomplete="off" role="textbox" aria-label="Search" type="text">
+                        </div>
+                        <ul id="selected1">
+                          <li data-group-name="Selected Charts" group-name="Data Visualization" class="dropdown-header">Selected Charts</li>
+                        </ul>
+                        <ul id="other" class="live-search-list">
+                          <li class="dropdown-header" data-group-name="Data Visualization" group-name="Data Visualization">Data Visualization</li>
+                          <li class="dropdown-content" data-search-term="scatter plot" group-name="Data Visualization" order-list="2"><a class="showForm scatterplot initialize" data-whatever="Scatter Plot" data-reportid="">Scatter Plot</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                          <li class="dropdown-content" data-search-term="area chart" group-name="Data Visualization" order-list="12" ><a class="showForm areachart initialize" data-whatever="Area Chart" data-reportid="">Area Chart</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                          <li class="dropdown-content" data-search-term="surface chart" group-name="Data Visualization" order-list="13"><a class="showForm surfacechart initialize" data-whatever="Surface Chart" data-reportid="">Surface Chart</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                          <li class="dropdown-content" data-search-term="bubble chart" group-name="Data Visualization" order-list="15"><a class="showForm bubblechart initialize" data-whatever="Bubble Chart" data-reportid="">Bubble Chart</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                          <li class="dropdown-content" data-search-term="line chart" group-name="Data Visualization" order-list="16"><a class="showForm linechart initialize" data-whatever="Line Chart" data-reportid="">Line Chart</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                          <li class="dropdown-content" data-search-term="3dscatter plot" group-name="Data Visualization" order-list="1"><a class="showForm scatterplot initialize" data-whatever="Scatter Plot" >3D Scatter Plot</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                          <li class="dropdown-content" data-search-term="boxplot" group-name="Data Visualization" order-list="8"><a class="showForm boxplot initialize" data-whatever="Boxplot" >Boxplot</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                          <li class="dropdown-content" data-search-term="pie chart" group-name="Data Visualization" order-list="11"><a  class="showForm piechart initialize" data-whatever="Pie Chart">Pie Chart</a><span class="glyphicon glyphicon-pushpin"></span></li>
+                        </ul>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="sourceNotConnectedModal" role="dialog">
+            <!-- Source not connected to ouptut operator-->
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Message!</h4>
+                </div>
+                <div class="modal-body">
+                  <div id="sourceNotConnectedModalDiv">
+                    <p>Please Connect to Output</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="outNotConnectedModal" role="dialog">
+            <!-- Output not connected to source operator-->
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Message!</h4>
+                </div>
+                <div class="modal-body">
+                  <div id="outNotConnectedModalDiv">
+                    <p>Please Connect to Source</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="sourceConnectedFileAttachModal" role="dialog">
+            <!-- Attach file to source-->
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Message!</h4>
+                </div>
+                <div class="modal-body">
+                  <div id="sourceConnectedFileAttachModalDiv">
+                    <p>Please click on Source Operator, select source file from dropdown and click modify to attach file to Source Operator.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="noRecodFoundModal" role="dialog">
+            <!-- Source connected to filter but not to ouptut operator-->
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Message!</h4>
+                </div>
+                <div class="modal-body">
+                  <div id="noRecodFoundModalDiv">
+                    <p>No record found.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="parameter-area-modal" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Parameters</h4>
+                  <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+                </div>
+                <div class="modal-body">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="result-area-modal" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Result</h4>
+                  <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+                </div>
+                <div class="modal-body">
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal for Date format-->
+          <div class="modal fade" id="dateFormat" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Error</h4>
+                </div>
+                <div class="modal-body">
+                  <p>To sort a date, format should be dd/mm/yyyy (02/28/2017)<p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--alert modals-->
+          <div class="modal fade"  role="dialog" id="file-warn-modal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+                  <h4 class="modal-title">Warning!</h4>
+                </div>
+                <div class="modal-body">
+                  <div id="msg">
+                    <h6>File not created.</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade"  role="dialog" id="joins-err-modal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+                  <h4 class="modal-title">Error!</h4>
+                </div>
+                <div class="modal-body">
+                  <div id="msg">
+                    <h6>Please check your source columns for join.</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade"  role="dialog" id="predicterror-modal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+                  <h4 class="modal-title">Error!</h4>
+                </div>
+                <div class="modal-body">
+                  <div id="msg">
+                    <h6>Factor levels mismatch or CSV contains more than 1 factor column.</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal fade"  role="dialog" id="chartsMsg-modal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+                  <h4 class="modal-title">Success!</h4>
+                </div>
+                <div class="modal-body">
+                  <div id="msg">
+                    <h6>
+                      {% if node_author == true %}
+                        Chart generated successfully and listed in charts area, click on "Save" to permanently save.
+                      {% else %}
+                        Chart generated successfully and listed in charts area.
+                      {% endif %}
+                    </h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="sketch-toolbar-options">
+            <a href="#"><span class="fa fa-trash-o" aria-hidden="true" id=""></span></a>
+            <a href="#"><span class="fa fa-cog" aria-hidden="true"></span></a>
+            <a href="#"><span class="fa fa fa-paint-brush" aria-hidden="true"></span></a>
+            <a href="#"><span class="fa fa fa-text-width" aria-hidden="true"></span></a>
+          </div>
+
+          <!--end alert modals-->
+
+          <div>
+            <input type="hidden" name="savedgraph" id="savedgraph">
+          </div>
+          <div id="paper">
+          </div>
+          <div class="navigator-slide closed" data-toggle="tooltip" data-placement="top" title="Navigator">
+            <span>Navigator</span>
+          </div>
+          <div id="navigator-container" class="closed">
+            <div id="navigator">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="gdataDiv" class="gdata-div">
+        <textarea id="mainArrayData">{{ main_array }}</textarea>
+        <textarea id="opIdData">{{ opId }}</textarea>
+        <textarea id="opArrayData">{{ op_array }}</textarea>
+        <textarea id="currentGraphData">{{ current_graph_data }}</textarea>
+        <input type="hidden" id="graphNid" value="{{ graph_nid }}"/>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-4 operator-coloumn">
+    <div id="exTab1">
+      <div class="op-area-note">Please click on an operator to view its settings.</div>
+      <ul class="nav nav-tabs">
+        <li><a href="#chart-div" class="chart_link">Chart</a></li>
+        <li class="active"><a href="#parameterss-area" class="param_link">Settings</a></li>
+        <li><a href="#styles-div" class="styles_link">Styles</a></li>
+        <li><a href="#notes-div" class="notes_link">Notes</a></li>
+        <li><a href="#feedback-div" class="feed_back_link">Feedback</a></li>
+        <li><a href="#result-div" class="result_link">Result</a></li>
+        <li><a href="#df1" class="df1_link" style="display: none">Result DF1</a></li>
+        <li><a href="#df2" class="df2_link" style="display: none">Result DF2</a></li>
+      </ul>
+      <div class="tab-content">
+        <div id="parameterss-area" class="tab-pane fade in active ">
+          <div id="param-title"></div>
+          <div id="parameters-box">
+            <div id="sourceDiv" class="filter-main-container op-spec-div">
+              <form>
+                <div class="form-group" id="paraFilePath" style="display:none;">
+                  <div class="source-select">
+                    <div class="full-width">
+                      <input type="radio" name="source-selector" value="internal" checked> <div class="src-type">Select Source</div>
+                    </div>
+                    <div class="full-width">
+                      <input type="radio" name="source-selector" value="external"> <div class="src-type">External Source</div>
+                    </div>
+                  </div>
+                  <input type="text" class="form-control" name="external_source" id="external_source" placeholder="http://beta-07.tamahagane.org/sample.csv">
+                  {% if source_options is empty %}
+                    <select class="form-control" id="selectedFilename" >
+                      <option value="">No source uploaded yet.</option>
+                    </select>
+                  {% else %}
+                    <select class="form-control" id="selectedFilename" >
+                      <option value="" selected>--Select Source File--</option>
+                      {% for key,value in source_options %}
+                        <option value="{{ key }}">{{ value }}</option>
+                      {% endfor %}
+                    </select>
+                  {% endif %}
+
+                  <input type="button" style='margin-top: 5px; float:right;' class='btn btn-default btn-submit' value="Import" id="btn-modify">
+                  <img class="graphLoader-modify" src="/sites/default/files/graphloader.gif">
+                </div>
+                <div class="form-group" id="joinDiv" style="display:none;">
+                  <label>Join type:</label>
+                  <select class="form-control" id="joinTypeId" name="joinTypeId">
+                    <option value="inner">inner</option>
+                    <option value="full">outer</option>
+                    <option value="left">left</option>
+                    <option value="right">right</option>
+                    <option value="semi">semi</option>
+                    <option value="anti">anti</option>
+                  </select>
+                  <div class="form-group">
+                    <div class="full-width form-actions">
+                      <input type="button" style="margin-top: 5px; float:left;" class="btn btn-default btn-submit" value="Submit" id="joinModify">
+                      <img class="graphLoader-modify" src="/sites/default/files/graphloader.gif">
+                    </div>
+                  </div>
+                </div>
+                <input type="hidden" class="form-control" name="param-id" id="param-id" value="">
+              </form>
+            </div>
+            <div id="filterDiv" class="filter-main-container op-spec-div">
+              <form class="" id="filters_op_form" method="post" style="display: block;">
+                <div class="filter-header">
+                  <label class="filter-title">Create filters: <span class="form-required" title="This field is required."></span></label> <img class="classifier-modify" src="/sites/default/files/graphloader.gif">
+                </div>
+                <div class="filterForm">
+                  <input type="hidden" name="global_filter_count" id="global_filter_count" value="1">
+                  <div id="data-view-filters">
+                    <div id="global_filter1" class="form-group form-inline filterDiv">
+                      <select class="form-control filterColoumSel" required="" id="global_filter_sel1" name="global_filter_sel1">
+                      </select>
+                      <select class="form-control filterColoumSel2" required="" id="global_filter_cond_sel1" name="global_filter_cond_sel1">
+                        <option value="" selected>--Select operator--</option>
+                      </select>
+                      <input type="text" class="form-control" required="" id="global_filter_cond_val1" name="global_filter_cond_val1" placeholder="Value">
+                    </div>
+                  </div>
+                  <div class="form-group add-more-cont">
+                    <a id="global_addb" class="add-more" name="global_addmore" type="button">Add Condition</a>
+                  </div>
+                </div>
+                <input id="submitFilters" class="btn btn-default btn-submit" name="viewSubmit" value="Submit" type="submit">
+                <img class="graphLoader-modify" src="/sites/default/files/graphloader.gif">
+              </form>
+            </div>
+            <div id="MappingDiv" class="mapping-main-container op-spec-div" style="display:none;">
+              <form class="" id="mapping_op_form" method="post" style="display: block;">
+                <div class="mappingForm">
+                  <div class="form-group">
+                    <label for="mapping_new_column">New column name: <span class="form-required" title="This field is required."></span></label>
+                    <input type="text" class="form-control" id="mapping_new_column" name="mapping_new_column" placeholder="New column value" required="" pattern=".*\S+.*">
+                  </div>
+                  <input type="hidden" name="mapping_div_count" id="mapping_div_count" value="1">
+                  <div id="mapping-filters">
+                    <div id="mapping_filter1" class="mappingDiv">
+                      <div class="mapping-div-inner">
+                        <input type="text" class="form-control" id="mapping_new_val1" name="mapping_new_val1" placeholder="New value" required="" pattern=".*\S+.*">
+                        <label>Condition: <span class="form-required" title="These fields are required."></span></label>
+                        <div class="form-group form-inline mapdiv">
+                          <select class="form-control filterColoumSel mapping" id="mapping_filter_sel1" name="mapping_filter_sel1" required="">
+                          </select>
+                          <select class="form-control filterColoumSel2" id="mapping_filter_cond_sel1" name="mapping_filter_cond_sel1" required="">
+                            <option value="" selected>--Select operator--</option>
+                          </select>
+                          <input type="text" class="form-control" id="mapping_filter_cond_val1" name="mapping_filter_cond_val1" placeholder="Value" required="" pattern=".*\S+.*">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group add-more-cont">
+                    <a id="mapping_addb" class="add-more" name="mapping_addmore" type="button">Add Value</a>
+                  </div>
+                </div>
+                <input id="submitMapping" class="btn btn-default btn-submit" name="submitMapping" value="Submit" type="submit">
+                <img class="graphLoader-modify" src="/sites/default/files/graphloader.gif">
+
+              </form>
+            </div>
+            <div class="form-group op-spec-div" id="knnDiv" style="display:none;">
+              <div class="form-group">
+                <label>Select prediction column:</label><img class="graphLoader-modify" src="/sites/default/files/graphloader.gif">
+                <select class="form-control" id="knnOp-select" >
+                  <option value="" selected>--Select Column--</option>
+                </select>
+              </div>
+
+              <button type="button" style='margin-top: 5px; float:right;' class="btn btn-default btn-submit" data-toggle="modal" id="btn-knn-form">Submit</button>
+              <img class="classifier-modify" src="/sites/default/files/graphloader.gif">
+            </div>
+            <div id="predictDiv"  class="form-group op-spec-div" style="display:none;">
+              <button type="button" style='margin-top: 5px; float:right;' class="btn btn-default btn-submit" id="btn-predict-submit">Submit</button>
+              <img class="classifier-modify" src="/sites/default/files/graphloader.gif">
+            </div>
+            <div id="performanceDiv"  class="form-group op-spec-div" style="display:none;">
+              <button type="button" style='margin-top: 5px; float:right;' class="btn btn-default btn-submit" id="btn-prfrmnc-submit">Submit</button>
+              <img class="classifier-modify" src="/sites/default/files/graphloader.gif">
+            </div>
+            <div class="form-group op-spec-div" id="dTreeDiv" style="display:none;">
+              <div class="form-group">
+                <label>Select prediction column:</label>
+                <img class="graphLoader-modify" src="/sites/default/files/graphloader.gif">
+                <select class="form-control" id="dtreeOp-select" >
+                  <option value="" selected>--Select Column--</option>
+                </select>
+              </div>
+              <button type="button" style='margin-top: 5px; float:right;' class="btn btn-default btn-submit"  id="btn-dtree-submit">Submit</button>
+              <img class="classifier-modify" src="/sites/default/files/graphloader.gif">
+            </div>
+
+
+            <div class="form-group op-spec-div" id="classifierDiv" style="display:none;">
+              <label>Select prediction column:</label><img class="graphLoader-modify" src="/sites/default/files/graphloader.gif">
+              <select class="form-control" id="classifierOp-select" >
+                <option value="" selected>--Select Column--</option>
+              </select>
+              <button type="button" style='margin-top: 5px; float:right;' class="btn btn-default btn-submit" data-toggle="modal" id="btn-classifier-form">Modify</button>
+              <img class="classifier-modify" src="/sites/default/files/graphloader.gif">
+            </div>
+            <div class="form-group op-spec-div" id="CatDiv" style="display:none;">
+              <div id="cat-opt-note">Cat operator adds two CSV files data under one another, both files should have same fields (columns).</div>
+              <button type="button" style='margin-top: 5px; float:right;' class="btn btn-default btn-submit"  id="btn-cat-submit">Submit</button>
+              <img class="classifier-modify" src="/sites/default/files/graphloader.gif">
+            </div>
+            <div class="form-group op-spec-div" id="OutputDiv" style="display:none;">
+              <button type="button" style='margin-top: 5px; float:right;' class="btn btn-default btn-submit" data-toggle="modal" id="btn-output-submit">Submit</button>
+            </div>
+            <div class="form-group op-spec-div" id="GroupbyDiv" style="display:none;">
+              <div class="form-group">
+                <div class="group-select">
+                  <input type="radio" name="group-selector" value="simple" checked="checked"> <span>Simple</span>
+                  <input type="radio" name="group-selector" value="summarized"> <span>Summarized</span>
+                </div>
+              </div>
+              <div class="form-group" id="groupby_col_div1" style="">
+                <div class="form-group">
+                  <label>Group by column:</label>
+                  <select class="selectpicker multiselect form-control" id="op_groupby_col" name="op_groupby_col" multiple="multiple" required>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group" id="groupby_col_div2" style="display:none;">
+                <div class="form-group">
+                  <label>Select summarize column:</label>
+                  <select class="form-control" id="gb_summ_col" name="gb_summ_col">
+                    <option value="" selected>--Select Function--</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Group By Function:</label>
+                  <select class="selectpicker multiselect form-control" id="op_groupby_func" name="op_groupby_func" multiple="multiple" >
+                    <option value="sum">Sum</option>
+                    <option value="mean">Mean</option>
+                    <option value="sd">SD</option>
+                  </select>
+                </div>
+              </div>
+              <button type="button" style='margin-top: 5px; float:right;' class="btn btn-default btn-submit"  id="btn-groupby-submit">Submit</button>
+              <img class="classifier-modify" src="/sites/default/files/graphloader.gif">
+            </div>
+            <div class="form-group op-spec-div" id="sliceDiv" style="display:none;">
+              <div class="form-group from-div">
+                <label>Row from:</label>
+                <input type="text" class="form-control" name="rowForm" id="rowForm" value="" required>
+              </div>
+              <div class="form-group">
+                <label>Row to:</label>
+                <input type="text" class="form-control" name="rowTo" id="rowTo" value="" required>
+              </div>
+              <button type="button" style='margin-top: 5px; float:right;' class="btn btn-default btn-submit" data-toggle="modal" id="btn-slice-form">Submit</button>
+              <img class="classifier-modify" src="/sites/default/files/graphloader.gif">
+            </div>
+            <div class="form-group op-spec-div" id="SplitDiv" style="display:none;">
+              <div class="form-group">
+                <label>Select split percentage:</label>
+                <select class="form-control" id="splitPercnt-select" >
+                  <option value="" selected>--Select Precentage--</option>
+                  <option value="0.1">0.1</option>
+                  <option value="0.2">0.2</option>
+                  <option value="0.3">0.3</option>
+                  <option value="0.4">0.4</option>
+                  <option value="0.5">0.5</option>
+                  <option value="0.6">0.6</option>
+                  <option value="0.7">0.7</option>
+                  <option value="0.8">0.8</option>
+                  <option value="0.9">0.9</option>
+                </select>
+              </div>
+              <button type="button" style='margin-top: 5px; float:right;' class="btn btn-default btn-submit" data-toggle="modal" id="btn-split-submit">Submit</button>
+              <img class="classifier-modify" src="/sites/default/files/graphloader.gif">
+            </div>
+
+            <div class="form-group op-spec-div" id="SelectDiv" style="display:none;">
+              <div class="form-group">
+                <label>Select columns:</label>
+                <div id="operaor-select-div">
+                  <select class="selectpicker multiselect form-control" id="op_select_col" name="op_select_col" multiple required >
+                    <option value="">--Select Columns--</option>
+                  </select>
+                </div>
+              </div>
+              <button type="button" style='margin-top: 5px; float:right;' class="btn btn-default btn-submit" id="btn-selectOp-submit">Submit</button>
+              <img class="classifier-modify" src="/sites/default/files/graphloader.gif">
+            </div>
+            <div class="form-group op-spec-div" id="SampleDiv" style="display:none;">
+              <div class="full-width params">
+                <div class="form-group">
+                  <label>Sample by:</label>
+                  <select class="form-control" id="op_sample_type" name="op_sample_type" required="required">
+                    <option value="" selected>--Select Sample Type--</option>
+                    <option value="rows-num">No. of Rows</option>
+                    <option value="precentage">Percentage</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Value</label>
+                  <input type="text" class="form-control" name="sample_value" id="sample_value" required="required">
+                </div>
+                <div class="form-group">
+                  <label>Replacement</label>
+                  <select class="form-control" id="op_sample_rep" name="op_sample_rep">
+                    <option value="true" selected="selected">True</option>
+                    <option value="false">False</option>
+                  </select>
+                </div>
+              </div>
+              <button type="button" style='margin-top: 5px; float:right;' class="btn btn-default btn-submit" data-toggle="modal" id="btn-sample-form">Submit</button>
+              <img class="classifier-modify" src="/sites/default/files/graphloader.gif">
+            </div>
+            <div class="form-group op-spec-div" id="DistinctDiv" style="display:none;">
+              <div class="form-group">
+                <label>Distinct by:</label>
+                <select class="form-control" id="op_distinct_type" name="op_distinct_type">
+                  <option value="" selected>--Select Distinct Type--</option>
+                  <option value="all">All</option>
+                  <option value="column">Column</option>
+                </select>
+              </div>
+              <div class="form-group" id="distinct_col_div">
+                <div class="form-group">
+                  <label>Select column:</label>
+                  <select class="form-control" id="op_distinct_col" name="op_distinct_col">
+                    <option value="" selected>--Select Column--</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Keep all</label>
+                  <select class="form-control" id="op_distinct_keep" name="op_distinct_keep">
+                    <option value="true" selected="selected">True</option>
+                    <option value="false">False</option>
+                  </select>
+                </div>
+              </div>
+              <button type="button" style='margin-top: 5px; float:right;' class="btn btn-default btn-submit" data-toggle="modal" id="btn-distinct-form">Submit</button>
+              <img class="classifier-modify" src="/sites/default/files/graphloader.gif">
+            </div>
+            <div class="form-group op-spec-div" id="SummarizeDiv" style="display:none;">
+              <div class="form-group">
+                <label>Group by:</label>
+                <select class="form-control" id="op_summarize_col" name="op_summarize_col">
+                  <option value="" selected>--Select Column--</option>
+                </select>
+              </div>
+              <button type="button" style='margin-top: 5px; float:right;' class="btn btn-default btn-submit" data-toggle="modal" id="btn-summarize-submit">Submit</button>
+              <img class="classifier-modify" src="/sites/default/files/graphloader.gif">
+            </div>
+
+            <div id="mutateAttrbs" class="sort-main-container op-spec-div">
+              <form class="" id="mutate_op_form" method="post" style="display: block;">
+                <div class="filter-header">
+                  <label class="filter-title">Mutate/Transmute</label>
+                </div>
+                <div id="mutateForm" class="col-sm-12">
+                  <div class="form-group">
+                    <input type="radio" name="mutate-selector" value="mutate" checked> Mutate
+                    <input type="radio" name="mutate-selector" value="transmute"> Transmute
+                  </div>
+
+                  <div class="form-group" id="SelectDivmutate">
+                    <div class="form-group">
+                      <label for="op_mutate_col1">Select column: <span class="form-required" title="This field is required."></span></label>
+                      <div id="operaor-select-div1">
+                        <select class="form-control" id="op_mutate_col1" name="op_mutate_col1" required="" >
+                          <option value="">--Select Columns--</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="op_mutate_col2">Select operation: <span class="form-required" title="This field is required."></span></label>
+                      <div id="operaor-select-div">
+                        <select class="form-control" id="op_mutate_col2" name="op_mutate_col2" required="" >
+                          <option value="">--Select Operation--</option>
+                          <option value="plus">+</option>
+                          <option value="minus">-</option>
+                          <option value="divide">/</option>
+                          <option value="multiply">X</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="op_mutate_col3">Select column: <span class="form-required" title="This field is required."></span></label>
+                      <div id="operaor-select-div2">
+                        <select class="form-control" id="op_mutate_col3" name="op_mutate_col3" required="" >
+                          <option value="">--Select Columns--</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="newcolumn">New column: <span class="form-required" title="This field is required."></span></label>
+                      <input type="text" class="form-control" name="newcolumn" id="newcolumn" required="" placeholder="">
+                    </div>
+                  </div>
+                  <input id="submitMutate" class="btn btn-default btn-submit" name="submitMutate" value="Submit" type="submit">
+                  <img class="classifier-modify" src="/sites/default/files/graphloader.gif">
+
+                </div>
+              </form>
+            </div>
+            <div id="paraAttrName" class="sort-main-container op-spec-div">
+              <div class="filter-header">
+                <label class="filter-title">Sort:</label>
+              </div>
+              <input type="hidden" name="sort_col_count" id="sort_col_count" value="1">
+
+              <div id="sortForm">
+                <div id="sort_col_1" class="form-group form-inline sortDiv">
+                  <select class="form-control sortColoumAttr" id="sortAttributes_1" name="sortAttributes_1">
+                  </select>
+                  <select class="form-control sortColoumType" id="sortType_1" name="sortType_1">
+                    <option value="ASC">Ascending</option>
+                    <option value="DESC">Descending</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group add-more-cont">
+                <a id="sort_addb" class="add-more" name="sort_addmore" type="button">Add Condition</a>
+              </div>
+
+              <input id="submitSorting" class="btn btn-default btn-submit" style='margin-top: 5px; float:right;' name="submitSorting" value="Submit" type="submit" >
+              <img class="graphLoader-modify" src="/sites/default/files/graphloader.gif">
+            </div>
+          </div>
+        </div>
+        <div id="styles-div" class="tab-pane fade">
+          <div id="op-title-box">
+            <div class="form-group">
+              <label>Title:</label>
+              <input type="text" class="form-control" name="titleOperator" id="titleOperator" placeholder="Operator title">
+            </div>
+          </div>
+          <div class="style-box">
+            <div class="form-group">
+              <label>Fill color:</label>
+              <input type="text" class="form-control" name="fillColor" id="fillColor" placeholder="">
+            </div>
+          </div>
+        </div>
+        <div id="notes-div" class="tab-pane fade ">
+          <div class="notes-box">
+            <textarea class="form-control" name="notes" id="notes" rows="13" cols="10" placeholder=""></textarea>
+            <label>Note: To save permanently please click on save.</label>
+          </div>
+        </div>
+        <div id="feedback-div" class="tab-pane fade ">
+          <div class="feedback-box">
+            {{ feedbackform }}
+          </div>
+        </div>
+        <div id="chart-div" class="tab-pane fade">
+          <div id="chart-edit-title"></div>
+          <div class="form-group op-spec-div" id="AreachartDiv-container" style="display:none;">
+            <div class="form-group" id="AreachartDiv" style="display:none;">
+            </div>
+          </div>
+          <div class="form-group op-spec-div" id="txtclusterDiv-container" style="display:none;">
+            <div class="form-group" id="txtclusterDiv" style="display:none;">
+            </div>
+          </div>
+
+          <div class="form-group op-spec-div" id="3dScatterDiv-container" style="display:none;">
+            <div class="form-group" id="3dScatterchartDiv" style="display:none;">
+
+            </div>
+          </div>
+          <div class="form-group op-spec-div" id="BubblechartDiv-container" style="display:none;">
+            <div class="form-group" id="BubblechartDiv" style="display:none;">
+            </div>
+          </div>
+
+          <div class="form-group op-spec-div" id="linechartDiv-container" style="display:none;">
+            <div class="form-group" id="linechartDiv" style="display:none;">
+            </div>
+          </div>
+          <div class="form-group op-spec-div" id="histogramchartdiv-container" style="display:none;">
+            <div class="form-group" id="histogramchartdiv" style="display:none;">
+            </div>
+          </div>
+          <input id="chartfile" type="hidden" name="chartfile" value="">
+          <input id="chartcellid" type="hidden" name="chartcell" value="">
+        </div>
+
+        <div id="result-div" class="tab-pane fade ">
+          <div id="curr-op-result" >
+            <div id="result-op-data">
+              <div id="no-result"></div>
+              <table id="currentResultTable" class="display table table-striped">
+                <thead>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div id="df1" class="tab-pane fade ">
+          <div id="curr-op-result-df1" >
+            <div id="result-op-data-df1">
+              <div id="no-result-df1"></div>
+              <table id="currentResultTable-df1" class="display table table-striped">
+                <thead>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div id="df2" class="tab-pane fade ">
+          <div id="curr-op-result-df2" >
+            <div id="result-op-data-df2">
+              <div id="no-result-df2"></div>
+              <table id="currentResultTable-df2" class="display table table-striped">
+                <thead>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-xs-12 col-md-4 analytics-column {% if node_author == true %} mem-exist {% endif %}">   {{ analytics_col }}   </div>
+    
+</div>
+
+<div class="modal fade" id="msgModal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Message!</h4>
+        <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="Close"  data-dismiss="modal"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>&nbsp;</button>
+      </div>
+      <div class="modal-body">
+        <div id="msgSaveId">
+          <h6>Saved successfully.</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+
+mc_devmode.devmode_controller_devmode:
+  path: '/mc_devmode/load/{data_id}/{rid}/{chart_type}/{image_num}'
+  defaults:
+    _controller: '\Drupal\mc_devmode\Controller\DevmodeController::devmode'
+    _title: 'Code & Analytics'
+  requirements:
+    _permission: 'access content'

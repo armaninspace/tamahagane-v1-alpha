@@ -1,0 +1,17 @@
+
+tm_barchart.barform:
+  path: '/tm_barchart/add/form'
+  defaults:
+    _controller: '\Drupal\tm_barchart\Controller\BarchartController::addForm'
+    _title: 'AddForm'
+  requirements:
+    _permission: 'access content'
+
+tm_barchart.barchart_process_data:
+  path: '/tm_barchart/process/data'
+  defaults:
+    _controller: '\Drupal\tm_barchart\Controller\BarchartController::processData'
+    _title: 'ProcessData'
+  requirements:
+    _permission: 'access content'
+

@@ -1,0 +1,5 @@
+name: TM barchart
+type: module
+description: A module to integrate barchart in Tamahagane
+core: 8.x
+package: Tamahagane

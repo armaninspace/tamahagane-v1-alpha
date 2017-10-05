@@ -1,0 +1,5 @@
+name: Tamahagne Devmode
+type: module
+description: A module to provide developer mode in Market Calipar
+core: 8.x
+package: Tamahagane

@@ -1,0 +1,5 @@
+name: TM bubblechart
+type: module
+description: A module to integrate bubble chart in Tamahagane
+core: 8.x
+package: Tamahagane

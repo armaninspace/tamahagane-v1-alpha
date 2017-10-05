@@ -1,0 +1,5 @@
+name: TM scatter plot matrix
+type: module
+description: A module to integrate Scatter plot matrix in Tamahagane
+core: 8.x
+package: Tamahagane

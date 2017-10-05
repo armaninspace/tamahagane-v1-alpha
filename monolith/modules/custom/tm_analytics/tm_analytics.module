@@ -1,0 +1,59 @@
+<?php
+use Drupal\message\Entity\Message;
+use Drupal\node\Entity\Node;
+use Drupal\comment\Entity\Comment;
+use Drupal\Core\Form\FormStateInterface;
+/*function tm_analytics_theme() {
+    $theme['node__report'] = [
+        'template' => 'mc_reports',
+        'base hook' => 'node',
+    ];
+
+    return $theme;
+}*/
+/**
+ * Implements hook_theme().
+ */
+function tm_analytics_theme() {
+  $node = \Drupal::routeMatch()->getParameter('node');
+  $nid = $node->nid->value;
+  //$node2 = node_load($nid);
+  //$nType = $node2->type->getString();
+    $nType = $nid;
+    return array(
+      'views_view__analytics' => array(
+        //'variables' => array('view' => NULL, 'options' => NULL, 'row' => NULL,'nodeType' => $nid),
+        'variables' => array('view' => NULL, 'options' => NULL, 'row' => NULL),
+        'template' => 'views-view--analytics',
+        'path' => drupal_get_path('module', 'tm_analytics') . '/templates',
+      ),
+   );
+}
+function tm_analytics_quicktabs_alter(&$quicktabs) {
+  $type="process";
+  foreach ($quicktabs->tabs as $key => $tab) {
+    if ($tab['title'] == 'Analytics' &&  $type != 'sketch') {//check condition as per your requirement
+      unset($quicktabs->tabs[$key]);
+    }
+  }
+}
+
+function tm_analytics_comment_insert(Comment $comment) {
+    $message = Message::create(['template' => 'comments', 'uid' => $comment->getOwnerId()]);
+    $message->set('field_comment_reference', $comment);
+    $message->set('field_published', $comment->isPublished());
+    $message->set('field_node_reference', $comment->getCommentedEntity());
+    $message->save();
+}
+
+function tm_analytics_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'node_sketch_edit_form') {
+    $node = $form_state->getFormObject()->getEntity();
+    $form['field_doc']['#prefix'] = '<div class="go-back-sketch"><a href="'.$node->url().'">Go Back</a></div>';
+  }
+}
+
+function tm_analytics_preprocess_page(&$variables) {
+  $variables['currentuserid'] = \Drupal::currentUser()->id();
+  $variables['#cache']['contexts'][] = 'user';
+}

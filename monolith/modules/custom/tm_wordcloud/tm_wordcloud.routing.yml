@@ -1,0 +1,17 @@
+
+tm_wordcloud.wordcloudform:
+  path: '/tm_wordcloud/add/form'
+  defaults:
+    _controller: '\Drupal\tm_wordcloud\Controller\WordcloudController::addForm'
+    _title: 'AddForm'
+  requirements:
+    _permission: 'access content'
+
+tm_wordcloud.wordcloud_process_data:
+  path: '/tm_wordcloud/process/data'
+  defaults:
+    _controller: '\Drupal\tm_wordcloud\Controller\WordcloudController::processData'
+    _title: 'ProcessData'
+  requirements:
+    _permission: 'access content'
+

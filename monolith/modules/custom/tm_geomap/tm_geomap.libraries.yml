@@ -1,0 +1,14 @@
+tm_geomap:
+  js:
+    # For some reason, you need to put the js directly under 'js'.
+    js/tm_geomap.js: {}
+    https://maps.googleapis.com/maps/api/js?key=AIzaSyCWcRdAsPBdBLo0ShXc65wiBgJCBfU0RVA&libraries=drawing: { type: external}
+
+  dependencies:
+    # jQuery is not included by default, so we add it as a dependency
+    - core/jquery
+    # We are also going to use jQuery.once so that code doesn't trigger multiple times.
+    - core/jquery.once
+    # drupal and drupalSettings are not included by default either.
+    - core/drupal
+

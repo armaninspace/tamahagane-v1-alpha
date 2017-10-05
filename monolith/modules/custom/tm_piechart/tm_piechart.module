@@ -1,0 +1,31 @@
+<?php
+/**
+ * @file
+ * Contains tm_piechart.module.
+ */
+use Drupal\Core\Routing\RouteMatchInterface;
+/**
+ * Implements hook_help().
+ */
+function tm_piechart_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the tm_piechart module.
+    case 'help.page.tm_piechart':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('A module to integrate Piechart in Tamahagane') . '</p>';
+      return $output;
+    default:
+  }
+}
+/**
+ * Implements hook_theme().
+ */
+function tm_piechart_theme() {
+  return [
+    'tm_piechart' => [
+      'template' => 'tm_piechart',
+      'render element' => 'children',
+    ],
+  ];
+}

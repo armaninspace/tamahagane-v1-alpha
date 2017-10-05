@@ -1,0 +1,137 @@
+<?php
+/**
+ * @file
+ * Contains tm_sketch.module.
+ */
+use Drupal\node\Entity\Node;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Entity;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Render\Element;
+use Drupal\og\Og;
+use Drupal\Core\Routing\RouteMatch;
+use Symfony\Component\HttpFoundation\Request;
+/**
+ * Implements hook_help().
+ */
+function tm_sketch_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the tm_sketch module.
+    case 'help.page.tm_sketch':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Used to create sketch') . '</p>';
+      return $output;
+    default:
+  }
+}
+/**
+ * Implements hook_theme().
+ */
+function tm_sketch_theme() {
+  return [
+    'tm_sketch' => [
+      'template' => 'tm_sketch',
+      'render element' => 'children',
+    ],
+  ];
+}
+use Drupal\Core\Form\FormStateInterface;
+/**
+ * Implements hook_form_alter() on behalf of tm_sketch.module.
+ */
+function tm_sketch_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if($form_id == 'node_sketch_edit_form'){
+    $node = $form_state->getFormObject()->getEntity();
+    $gid = $node->get('og_audience')->getString();
+    if ($gid) {
+      $gnode= Node::load($gid);
+      if (!Og::isMember($gnode, \Drupal\user\Entity\User::load(\Drupal::currentUser()->id()))) {
+        foreach($form as $key => $element) {
+          unset($form[$key]);
+        }
+        $form['#prefix'] = 'You are not authorized to access this page';
+        return false;
+      }
+    }
+  }
+  if ($form_id == 'node_sketch_form' || $form_id == 'node_folder_form' || $form_id == 'node_source_form'
+      || $form_id == 'node_json_form' || $form_id == 'node_rcode_form' || $form_id == 'node_doc_form') {
+    $nid = \Drupal::request()->query->get('nid');
+    if ($nid) {
+      $node = is_numeric($nid) ? Node::load($nid) : NULL;
+      if ($node->getType() == 'process') {
+        $form['og_audience']['widget'][0]['target_id']['#default_value'] = $node;
+      } elseif ($node->getType() == 'folder') {
+        $gid = $node->get('og_audience')->getString();
+        $gnode = is_numeric($gid) ? Node::load($gid) : NULL;
+        $form['og_audience']['widget'][0]['target_id']['#default_value'] = $gnode;
+        $form['field_folder_reference']['widget'][0]['target_id']['#default_value'] = $node;
+      }
+    }
+  }
+  if ($form_id == 'node_process_form') {
+    $form['#title'] = t('Add Project');
+  }
+  if ($form_id == 'node_operator_form') {
+    $form['#title'] = t('Add Operator');
+  }
+  if ($form_id == 'node_source_form') {
+    $form['#title'] = t('Add Source');
+  }
+  if ($form_id == 'user_form') {
+    $form['#title'] = t('Edit');
+  }
+  if ($form_id == 'node_process_form' || $form_id == 'node_operator_form' || $form_id == 'node_json_form' 
+  || $form_id == 'node_rcode_form' || $form_id == 'node_doc_form') {
+  // unset($form['format']);
+   $form['#pre_render'][] = 'tm_sketch_form_pre_render_body';
+  }
+}
+function tm_sketch_form_pre_render_body(array $element) {
+  foreach (Element::children($element) as $key) {
+    if ($key == 'body') {
+      foreach (Element::children($element[$key]['widget']) as $widget) {
+        $element[$key]['widget'][$widget]['format']['#access'] = FALSE;
+      }
+    }
+  }
+
+  return $element;
+}
+function tm_sketch_form_comment_comment_form_alter(&$form, &$form_state) {
+  if (isset($form['actions']['submit'])) {
+    $form['actions']['submit']['#value'] = t('Post');
+  }
+}
+
+/**
+ * Implements template_preprocess_status_messages().
+ */
+function tm_sketch_preprocess_status_messages(&$variables) {
+  $request = \Drupal::request();
+  $route_name = RouteMatch::createFromRequest($request)->getRouteName();
+  if (strpos($route_name, 'ajax_comments') !== FALSE) {
+    $variables['attributes']['class'][] = '';
+  }
+}
+function tm_sketch_link_alter(&$variables) {
+  if ($variables['text'] == 'Unsubscribe from group') {
+    $variables['text'] = t('@text', ['@text' => 'Unsubscribe']);
+  }
+  if ($variables['text'] == 'Subscribe to group') {
+    $variables['text'] = t('@text', ['@text' => 'Subscribe']);
+  }
+  if ($variables['text'] == 'Request group membership') {
+    $variables['text'] = t('@text', ['@text' => 'Subscribe']);
+  }
+}
+
+function tm_sketch_block_build_system_breadcrumb_block_alter(array &$build, \Drupal\Core\Block\BlockPluginInterface $block) {
+  $build['#cache']['max-age'] = 0;
+}
+
+
+
+
+

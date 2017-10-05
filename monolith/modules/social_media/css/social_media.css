@@ -1,0 +1,15 @@
+.social-media-sharing{
+  display:block;
+}
+.social-media-sharing li {
+    display: inline-block;
+    margin-right: 15px;
+    list-style: none;
+    list-style-type: none;
+}
+.social-media-sharing .share {
+  cursor: pointer;
+}
+.social-media-sharing .share img {
+  width:40px;
+}

@@ -1,0 +1,115 @@
+<form class="sections_forms" id="line_chart_form" method="post" style="display: block;">
+ <h3>Line Chart</h3>
+  <div class="form-inner">
+	<div class="form-group">
+	  <label for="line_title" class="control-label">Title:<span class="form-required" title="This field is required."></span></label>
+	  <input type="text" class="form-control" id="line_title" name="line_title" required="" pattern=".*\S+.*">
+	</div>
+	<div class="form-group">
+	  <label for="line_xaxis_col" class="control-label">Select x-axis column:<span class="form-required" title="This field is required."></span></label>
+	  <select class="form-control singleselect" id="line_xaxis_col" name="line_xaxis_col" required="">
+		<option data-type="" value="">--- Select Column ----</option>
+		{% for data in num_fields %}
+		  {% set foo = data|split('=') %}
+		  <option data-type="{{ foo[1] }}" value="{{ foo[0] }}">{{ foo[0] }}</option>
+		{% endfor %}
+	  </select>
+	</div>
+	<div class="form-group">
+	  <label for="line_yaxis_col" class="control-label">Select y-axis column:<span class="form-required" title="This field is required."></span></label>
+	  <select class="form-control singleselect" id="line_yaxis_col" name="line_yaxis_col" required="">
+		<option data-type="" value="">--- Select Column ----</option>
+		{% for data in num_fields %}
+		  {% set foo = data|split('=') %}
+		  <option data-type="{{ foo[1] }}" value="{{ foo[0] }}">{{ foo[0] }}</option>
+		{% endfor %}
+      </select>
+	</div>
+	<div class="form-group">
+	  <label for="line_zaxis_col" class="control-label">Select z-axis column:<span class="form-required" title="This field is required."></span></label>
+	  <select class="form-control singleselect" id="line_zaxis_col" name="line_zaxis_col" required="">
+		<option data-type="" value="">--- Select Column ----</option>
+		{% for data in num_fields %}
+		  {% set foo = data|split('=') %}
+		  <option data-type="{{ foo[1] }}" value="{{ foo[0] }}">{{ foo[0] }}</option>
+		{% endfor %}
+      </select>
+	</div>
+	<div class="form-group">
+	  <label for="line_xtitle" class="control-label">X-axis title:</label>
+	  <input type="text"  class="form-control" id="line_xtitle" name="line_xtitle">
+	</div>
+	<div class="form-group">
+	  <label for="line_ytitle" class="control-label">Y-axis title:</label>
+	  <input type="text" class="form-control" id="line_ytitle" name="line_ytitle">
+	</div>
+	<div class="form-group">
+	  <label for="line_ztitle" class="control-label">Z-axis title:</label>
+	  <input type="text" class="form-control" id="line_ztitle" name="line_ztitle">
+	</div>
+	<div class="form-group">
+	  <label for="line_color_col" class="control-label">Select Color column:</label>
+	  {% if all_types.factor_type is empty %}
+		<select class="form-control color-sel" id="line_color_col" name="line_color_col" disabled>
+		  <option data-type="" value="">No column available for color variable </option>
+		</select>
+	  {% else %}
+		<select class="form-control color-sel" id="line_color_col" name="line_color_col">
+		  {#all_types.factor_type#}
+		  <option data-type="" value="">--- Select Column ----</option>
+		  {% for data in all_types.factor_type %}
+			{% set foo = data|split('=') %}
+			<option data-type="{{ foo[1] }}" value="{{ foo[0] }}">{{ foo[0] }}</option>
+		  {% endfor %}
+		</select>
+      {% endif %}
+	</div>
+	<div class="form-group">
+	  <label for="line_text_col" class="control-label">Select Text column:</label>
+	  {% if all_types.factor_type is empty %}
+		<select class="form-control color-sel" id="line_text_col" name="line_text_col" disabled>
+		  <option data-type="" value="">No column available for text variable </option>
+		</select>
+	  {% else %}
+		<select class="form-control color-sel" id="line_text_col" name="line_text_col">
+		  {#all_types.factor_type#}
+		  <option data-type="" value="">--- Select Column ----</option>
+		  {% for data in all_types.factor_type %}
+			{% set foo = data|split('=') %}
+			<option data-type="{{ foo[1] }}" value="{{ foo[0] }}">{{ foo[0] }}</option>
+		  {% endfor %}
+		</select>
+	  {% endif %}
+	</div>
+    <div class="form-group filter-div">
+	  <label for="" class="control-label filters">Filters:</label>
+	  <div class="filter_note"><span class="form-required"></span>Character filters are case sensitive for "is equal to" operator.</div>
+	</div>
+	<input type="hidden" name="line_filter_count" id="line_filter_count" value="1">
+	<input type="hidden" name="csv_file_path" id="csvFilePath" value="{{ file_path }}">
+	<input type="hidden" name="img_dir" id="imgDir" value="{{ img_dir }}">
+	<input type="hidden" id="module_path_line" name="module_path_line" value="{{ module_path }}">
+	<div id="line_filter1" class="form-group form-inline filterDiv first">
+	  <select class="form-control filterColoumSel filter-sel" id="line_filter_sel1" name="line_filter_sel1">
+		<option data-type="" value="">--- Select Filter ----</option>
+		{% for data in merged_fields %}
+			{% set foo = data|split('=') %}
+			<option data-type="{{ foo[1] }}" value="{{ foo[0] }}">{{ foo[0] }}</option>
+		{% endfor %}
+      </select>
+	  <select class="form-control filter-oper" id="line_filter_cond_sel1" name="line_filter_cond_sel1">
+	    <option value="">--Select Operator--</option>
+	  </select>
+	  <input type="text" class="form-control filter-val" id="line_filter_cond_val1" name="line_filter_cond_val1" placeholder="Value">
+	</div>
+	<div class="form-group add-more-cont">
+	   <a id="line_addb" class="add-more" name="line_addmore" type="">Add Condition</a>
+	</div>
+  </div><!-- end form-inner--> 
+  <div class="form-group form-btns">
+	<input type="submit" class="btn btn-default submit-btn" name="line_plot_sub" value="Submit" id="line_plot_sub">
+	  <button type="button" class="btn btn-default cancel_btn">Cancel</button>
+	<img class="classifier-modify" src="/sites/default/files/graphloader.gif">
+  </div>
+  <input id="linechartfile" type="hidden" name="linechartfile" value="">
+</form>

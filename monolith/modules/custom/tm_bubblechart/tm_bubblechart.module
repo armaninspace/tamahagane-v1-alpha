@@ -1,0 +1,32 @@
+<?php
+/**
+ * @file
+ * Contains mc_bubblechart.module.
+ */
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function tm_bubblechart_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the tm_bubblechart module.
+    case 'help.page.tm_bubblechart':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('A module to integrate Scatterplot in MarketCaliper') . '</p>';
+      return $output;
+    default:
+  }
+}
+/**
+ * Implements hook_theme().
+ */
+function tm_bubblechart_theme() {
+  return [
+    'tm_bubblechart' => [
+      'template' => 'tm_bubblechart',
+      'render element' => 'children',
+    ],
+  ];
+}

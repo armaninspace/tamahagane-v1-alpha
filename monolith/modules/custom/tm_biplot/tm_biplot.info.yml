@@ -1,0 +1,5 @@
+name: TM biplot
+type: module
+description: A module to integrate biplot in Tamahagane
+core: 8.x
+package: Tamahagane

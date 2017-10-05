@@ -1,0 +1,42 @@
+<?php
+/**
+ * @file
+ * Main functions and hook implementations of the og_menu module.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\og\Og;
+use Drupal\og\OgGroupAudienceHelper;
+
+/**
+ * Implements hook_theme().
+ */
+function og_menu_theme() {
+  $theme = [];
+  $theme['ogmenu_instance'] = [
+    'render element' => 'elements',
+    'file' => 'ogmenu_instance.page.inc',
+    'template' => 'ogmenu_instance',
+  ];
+  $theme['ogmenu_instance_content_add_list'] = [
+    'render element' => 'content',
+    'variables' => ['content' => NULL],
+    'file' => 'ogmenu_instance.page.inc',
+  ];
+  return $theme;
+}
+
+/**
+ * Implements hook_entity_delete().
+ */
+function og_menu_entity_delete(EntityInterface $entity) {
+  // If a group is deleted, delete its associated OG Menus.
+  if (Og::isGroup($entity->getEntityTypeId(), $entity->bundle())) {
+    $storage = \Drupal::entityTypeManager()->getStorage('ogmenu_instance');
+    $properties = [OgGroupAudienceHelper::DEFAULT_FIELD => $entity->id()];
+    /** @var \Drupal\og_menu\Entity\OgMenuInstance $instance */
+    foreach ($storage->loadByProperties($properties) as $instance) {
+      $instance->delete();
+    }
+  }
+}

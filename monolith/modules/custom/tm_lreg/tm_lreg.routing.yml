@@ -1,0 +1,17 @@
+
+tm_lreg.lregform:
+  path: '/tm_lreg/add/form'
+  defaults:
+    _controller: '\Drupal\tm_lreg\Controller\LregController::addForm'
+    _title: 'AddForm'
+  requirements:
+    _permission: 'access content'
+
+tm_lreg.lreg_process_data:
+  path: '/tm_lreg/process/data'
+  defaults:
+    _controller: '\Drupal\tm_lreg\Controller\LregController::processData'
+    _title: 'ProcessData'
+  requirements:
+    _permission: 'access content'
+

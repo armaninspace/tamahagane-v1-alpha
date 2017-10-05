@@ -1,0 +1,17 @@
+
+tm_trendplot.trendplotform:
+  path: '/tm_trendplot/add/form'
+  defaults:
+    _controller: '\Drupal\tm_trendplot\Controller\TrendplotController::addForm'
+    _title: 'AddForm'
+  requirements:
+    _permission: 'access content'
+
+tm_trendplot.trendplot_process_data:
+  path: '/tm_trendplot/process/data'
+  defaults:
+    _controller: '\Drupal\tm_trendplot\Controller\TrendplotController::processData'
+    _title: 'ProcessData'
+  requirements:
+    _permission: 'access content'
+

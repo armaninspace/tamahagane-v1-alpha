@@ -1,0 +1,19 @@
+{{ attach_library('tm_sketch/tm_sketch') }}
+<div id="sketch-container" class="sketch-container">
+  <div id="process-ref-nodes" class="process-ref-nodes"> {{ view_content }} </div>
+  {% if member == true %}
+    <div id="add-process-ref-nodes" class="add-process-nodes">
+      <div class="dropdown">
+        <a class="create-link dropdown-toggle" type="button" data-toggle="dropdown">Create  <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a class="use-ajax folder-link ref-node-link modal-links" data-dialog-type="modal" data-dialog-options='{"width":700}' href="/node/add/folder?nid={{ nid }}">Folder</a></li>
+          <li><a class="use-ajax json-link ref-node-link modal-links" data-dialog-type="modal" data-dialog-options='{"width":700}' href="/node/add/json?nid={{ nid }}">Json</a></li>
+          <li><a class="use-ajax rcode-link ref-node-link modal-links" data-dialog-type="modal" data-dialog-options='{"width":700}' href="/node/add/rcode?nid={{ nid }}">Rcode</a></li>
+          <li><a class="use-ajax sketch-link ref-node-link modal-links" data-dialog-type="modal" data-dialog-options='{"width":700}' href="/node/add/sketch?nid={{ nid }}">Sketch</a></li>
+          <li><a class="use-ajax doc-link ref-node-link modal-links" data-dialog-type="modal" data-dialog-options='{"width":700}' href="/node/add/doc?nid={{ nid }}">Doc</a></li>
+         <li><a class="use-ajax source-link ref-node-link modal-links" data-dialog-type="modal" data-dialog-options='{"width":700}' href="/node/add/source?nid={{ nid }}">Source</a></li>
+        </ul>
+      </div>
+    </div>
+  {% endif %}
+</div>

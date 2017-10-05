@@ -1,0 +1,5 @@
+name: TM Linechart
+type: module
+description: A module to integrate Linechart in Tamahagane
+core: 8.x
+package: Tamahagane

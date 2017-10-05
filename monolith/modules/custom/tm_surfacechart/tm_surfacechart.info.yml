@@ -1,0 +1,5 @@
+name: TM Surface Chart
+type: module
+description: A module to integrate Surface Chart in Tamahagane
+core: 8.x
+package: Tamahagane

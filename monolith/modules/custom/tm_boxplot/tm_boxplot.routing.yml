@@ -1,0 +1,17 @@
+
+tm_boxplot.boxform:
+  path: '/tm_boxplot/add/form'
+  defaults:
+    _controller: '\Drupal\tm_boxplot\Controller\BoxplotController::addForm'
+    _title: 'AddForm'
+  requirements:
+    _permission: 'access content'
+
+tm_boxplot.boxplot_process_data:
+  path: '/tm_boxplot/process/data'
+  defaults:
+    _controller: '\Drupal\tm_boxplot\Controller\BoxplotController::processData'
+    _title: 'ProcessData'
+  requirements:
+    _permission: 'access content'
+

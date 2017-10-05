@@ -1,0 +1,31 @@
+<?php
+/**
+ * @file
+ * Contains tm_scatterplot.module.
+ */
+use Drupal\Core\Routing\RouteMatchInterface;
+/**
+ * Implements hook_help().
+ */
+function tm_surfacechart_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the tm_scatterplot module.
+    case 'help.page.tm_surfacechart':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('A module to integrate Surface Chart in MarketCaliper') . '</p>';
+      return $output;
+    default:
+  }
+}
+/**
+ * Implements hook_theme().
+ */
+function tm_surfacechart_theme() {
+  return [
+    'tm_surfacechart' => [
+      'template' => 'tm_surfacechart',
+      'render element' => 'children',
+    ],
+  ];
+}

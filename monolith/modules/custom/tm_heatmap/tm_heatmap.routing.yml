@@ -1,0 +1,17 @@
+
+tm_heatmap.heatmapform:
+  path: '/tm_heatmap/add/form'
+  defaults:
+    _controller: '\Drupal\tm_heatmap\Controller\HeatmapController::addForm'
+    _title: 'AddForm'
+  requirements:
+    _permission: 'access content'
+
+tm_heatmap.heatmap_process_data:
+  path: '/tm_heatmap/process/data'
+  defaults:
+    _controller: '\Drupal\tm_heatmap\Controller\HeatmapController::processData'
+    _title: 'ProcessData'
+  requirements:
+    _permission: 'access content'
+

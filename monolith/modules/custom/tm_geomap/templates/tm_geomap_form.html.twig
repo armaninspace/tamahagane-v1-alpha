@@ -1,0 +1,75 @@
+<form class="sections_forms" id="geomap_form" method="post" style="display: block;">
+  <h3>Geo</h3>
+  <div class="form-inner">
+    <div class="form-group">
+	  <label for="geomap_title" class="control-label">Title:<span
+				  class="form-required" title="This field is required."></span></label>
+	  <input type="text" class="form-control" id="geomap_title"
+			 name="geomap_title" required pattern=".*\S+.*">
+    </div>
+    <div class="form-group">
+	  <label for="geomap_lat" class="control-label">Select Latitude:<span class="form-required" title="This field is required."></span></label>
+	  <select class="form-control singleselect" id="geomap_lat" name="geomap_lat" required>
+	    <option value="" data-type="">--Select Column--</option>
+	    {% for data in merged_fields %}
+		  {% set foo = data|split('=') %}
+		  <option data-type="{{ foo[1] }}" value="{{ foo[0] }}">{{ foo[0] }}</option>
+	    {% endfor %}
+	  </select>
+    </div>
+    <div class="form-group">
+	  <label for="geomap_long" class="control-label">Select Longitude:<span class="form-required" title="This field is required."></span></label>
+	  <select class="form-control singleselect" id="geomap_long" name="geomap_long" required>
+	    <option value="" data-type="">--Select Column--</option>
+	    {% for data in merged_fields %}
+		  {% set foo = data|split('=') %}
+		  <option data-type="{{ foo[1] }}" value="{{ foo[0] }}">{{ foo[0] }}</option>
+	    {% endfor %}
+	  </select>
+	</div>
+    <div class="form-group">
+	  <label for="" class="control-label">Geo Filters:</label>
+	</div>
+    <div id="geomap_filter" class="form-group form-inline geoFilterDiv">
+	  <input type="text" class="form-control" id="geomap_city"
+			 name="geomap_city" placeholder="City">
+	  <select class="form-control singleselect" id="geomap_miles_sel"
+			  name="geomap_miles_sel">
+	    <option value="">Miles</option>
+	    <option value="10">10</option>
+	    <option value="20">20</option>
+	    <option value="30">30</option>
+	    <option value="50">50</option>
+	    <option value="100">100</option>
+	  </select>
+	</div>
+	<div class="form-group filter-div">
+	  <label for="" class="control-label filters">Filters:</label>
+	  <div class="filter_note"><span class="form-required"></span>Character filters are case sensitive for "is equal to" operator.</div>
+    </div>
+    <input type="hidden" name="geomap_filter_count" id="geomap_filter_count" value="1"/>
+	<input type="hidden" name="csv_file_path" id="csvFilePath" value="{{ file_path }}">
+	<input type="hidden" name="img_dir" id="imgDir" value="{{ img_dir }}">
+	<input type="hidden" id="module_path_line" name="module_path_geomap" value="{{ module_path }}">
+	<div id="geomap_filter1" class="form-group form-inline filterDiv first">
+	  <select class="form-control filterColoumSel" id="geomap_filter_sel1" name="geomap_filter_sel1">
+		<option data-type="" value="">--- Select Filter ----</option>
+		{% for data in merged_fields %}
+		  {% set foo = data|split('=') %}
+		  <option data-type="{{ foo[1] }}" value="{{ foo[0] }}">{{ foo[0] }}</option>
+		{% endfor %}
+	  </select>
+	  <select class="form-control" id="geomap_filter_cond_sel1" name="geomap_filter_cond_sel1">
+        <option value="">--Select Operator--</option>
+	  </select>
+      <input type="text" class="form-control" id="geomap_filter_cond_val1" name="geomap_filter_cond_val1" placeholder="Value">
+	</div>
+	<div class="form-group  add-more-cont">
+      <a id="geomap_addb" class="add-more" name="geomap_addmore" type="">Add Condition</a>
+	</div>
+  </div><!-- end form-inner-->
+  <div class="form-group form-btns">
+	<button type="button" class="btn btn-default cancel_btn">Cancel</button>
+	<input type="submit" class="btn btn-primary submit-btn" name="geomap_sub" value="Submit" id="geomap_sub" >
+  </div>
+</form>

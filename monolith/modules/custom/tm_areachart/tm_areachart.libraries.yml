@@ -1,0 +1,17 @@
+tm_areachart:
+  js:
+    # For some reason, you need to put the js directly under 'js'.
+    #https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js: { type: external }
+    #https://code.angularjs.org/1.2.15/angular-route.min.js: { type: external, minified: true }
+    #https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js: {type: external, minified: true }
+    #js/script.js: {}
+    #js/angular-gridster.js: {}
+    js/tm_opt_areachart.js: { weight: -1 }
+  dependencies:
+    # jQuery is not included by default, so we add it as a dependency
+    - core/jquery
+    # We are also going to use jQuery.once so that code doesn't trigger multiple times.
+    - core/jquery.once
+    # drupal and drupalSettings are not included by default either.
+    - core/drupal
+

@@ -1,0 +1,9 @@
+tm_narrativetext.narrativetextform:
+  path: '/tm_narrativetext/add/form'
+  defaults:
+    _controller: '\Drupal\tm_narrativetext\Controller\NarrativetextController::addForm'
+    _title: 'AddForm'
+  requirements:
+    _permission: 'access content'
+
+

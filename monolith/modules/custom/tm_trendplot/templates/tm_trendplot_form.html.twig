@@ -1,0 +1,77 @@
+<form class="sections_forms" id="trendplot_form" method="post" style="display: block;">
+  <h3>Trend Plot</h3>
+  <div class="form-inner">
+	<div class="form-group">
+	  <label for="trendplot_title" class="control-label">Title:<span
+				  class="form-required" title="This field is required."></span></label>
+	  <input type="text" class="form-control" id="trendplot_title"
+			 name="trendplot_title" required pattern=".*\S+.*">
+	</div>
+	<div class="form-group">
+	  <label for="trendplot_xaxis_col" class="control-label">Select
+		  x-axis column:<span class="form-required"
+							  title="This field is required."></span></label>
+	  <select class="form-control singleselect" id="trendplot_xaxis_col"
+			  name="trendplot_xaxis_col" required>
+		<option value="" data-type="">--Select Column--</option>
+		{% for data in num_fields %}
+		  {% set foo = data|split('=') %}
+		  <option data-type="{{ foo[1] }}" value="{{ foo[0] }}">{{ foo[0] }}</option>
+		{% endfor %}
+	  </select>
+	</div>
+	<div class="form-group">
+	  <label for="trendplot_yaxis_col" class="control-label">Select
+		  y-axis column:<span class="form-required"
+							  title="This field is required."></span></label>
+	  <select class="form-control singleselect" id="trendplot_yaxis_col"
+			  name="trendplot_yaxis_col" required>
+		<option value="" data-type="">--Select Column--</option>
+		{% for data in num_fields %}
+		  {% set foo = data|split('=') %}
+		  <option data-type="{{ foo[1] }}" value="{{ foo[0] }}">{{ foo[0] }}</option>
+		{% endfor %}
+	  </select>
+	</div>
+	<div class="form-group">
+	  <label for="trendplot_xtitle" class="control-label">X-axis
+		  title:</label>
+	  <input type="text" class="form-control" id="trendplot_xtitle"
+			 name="trendplot_xtitle">
+	</div>
+	<div class="form-group">
+	  <label for="trendplot_ytitle" class="control-label">Y-axis
+		  title:</label>
+	  <input type="text" class="form-control" id="trendplot_ytitle"
+			 name="trendplot_ytitle">
+	</div>
+    <div class="form-group filter-div">
+	  <label for="" class="control-label filters">Filters:</label>
+	  <div class="filter_note"><span class="form-required"></span>Character filters are case sensitive for "is equal to" operator.</div>
+    </div>
+    <input type="hidden" name="trendplot_filter_count" id="trendplot_filter_count" value="1"/>
+	<input type="hidden" name="csv_file_path" id="csvFilePath" value="{{ file_path }}">
+	<input type="hidden" name="img_dir" id="imgDir" value="{{ img_dir }}">
+	<input type="hidden" id="module_path_trendplot" name="module_path_trendplot" value="{{ module_path }}">
+    <div id="trendplot_filter1" class="form-group form-inline filterDiv first">
+	  <select class="form-control filterColoumSel filter-sel" id="trendplot_filter_sel1" name="trendplot_filter_sel1">
+		<option data-type="" value="">--- Select Filter ----</option>
+		{% for data in merged_fields %}
+		  {% set foo = data|split('=') %}
+		  <option data-type="{{ foo[1] }}" value="{{ foo[0] }}">{{ foo[0] }}</option>
+		{% endfor %}
+	  </select>
+	  <select class="form-control filter-oper" id="trendplot_filter_cond_sel1" name="trendplot_filter_cond_sel1">
+        <option value="">--Select Operator--</option>
+	  </select>
+      <input type="text" class="form-control filter-val" id="trendplot_filter_cond_val1" name="trendplot_filter_cond_val1" placeholder="Value">
+    </div>
+    <div class="form-group add-more-cont">
+      <a id="trendplot_addb" class="add-more" name="trendplot_addmore" type="">Add Condition</a>
+    </div>
+  </div><!-- end form-inner-->
+  <div class="form-group form-btns">
+    <button type="button" class="btn btn-default cancel_btn">Cancel</button>
+	<input type="submit" class="btn btn-default submit-btn" name="trendplot_sub" value="Submit" id="trendplot_sub">
+  </div>
+</form>

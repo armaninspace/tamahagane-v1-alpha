@@ -1,0 +1,31 @@
+<?php
+/**
+ * @file
+ * Contains tm_areachart.module.
+ */
+use Drupal\Core\Routing\RouteMatchInterface;
+/**
+ * Implements hook_help().
+ */
+function tm_areachart_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the tm_areachart module.
+    case 'help.page.tm_areachart':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('A module to integrate Scatterplot in MarketCaliper') . '</p>';
+      return $output;
+    default:
+  }
+}
+/**
+ * Implements hook_theme().
+ */
+function tm_areachart_theme() {
+  return [
+    'tm_areachart' => [
+      'template' => 'tm_areachart',
+      'render element' => 'children',
+    ],
+  ];
+}

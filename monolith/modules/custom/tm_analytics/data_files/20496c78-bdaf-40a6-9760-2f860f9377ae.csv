@@ -1,0 +1,6 @@
+mpg,cylinders,color,name,displacement,horsepower,weight,acceleration,year,origin
+25,4,WHITE,"ford pinto lorum ipsum set mangtiey",98,?,2046,19,71,1
+21,6,WHITE,"ford maverick  lorum ipsum set mangtiey",200,?,2875,17,74,1
+40.9,4,BLACK,"renault lecar deluxe  lorum ipsum set mangtiey",85,?,1835,17.3,80,2
+23.6,4,BLACK,"ford mustang cobra  lorum ipsum set mangtiey",140,?,2905,14.3,80,1
+34.5,4,BROWN,"renault 18i  lorum ipsum set mangtiey",100,?,2320,15.8,81,2

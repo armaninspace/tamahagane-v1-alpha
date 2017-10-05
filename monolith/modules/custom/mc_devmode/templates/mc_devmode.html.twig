@@ -1,0 +1,112 @@
+<div class="devmode-wrapper">
+  {{ attach_library('mc_devmode/mc_devmode') }}
+  {{ attach_library('mc_devmode/mc_devmode_general') }}
+  <div class="container">
+    <div id="devTabs">
+	  <span  class="go-back-wrapper pull-right"><a href="{{ report_path }}" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Back</a></span>
+	  <ul id="inner_tabs_{{ image_num }}" class="nav nav-tabs">
+		<li id="inner_li_plot" class="active"><a data-toggle="tab" href="#plot">Plot</a></li>
+		<li id="inner_li_rcode"><a data-toggle="tab" href="#rcode">R Code</a></li>
+		<li id="inner_li_rcode" class="rexample"><a data-toggle="tab" href="#rcodeExample">R Example Code</a></li>
+		<li id="inner_li_rcode" class="data"><a data-toggle="tab" href="#data_table">Data</a></li>
+	  </ul>
+    </div>
+	<div id="inner_tabs_content" class="tab-content">
+	  {#graph tab Content#}
+	  <div id="plot" class="tab-pane fade active in col-md-12">
+		<div class="col-xs-12 col-md-8 graph-holder">
+		  <div class="col-xs-12 col-md-12 analytical-messages"></div>
+		  <div class="col-xs-12 col-md-12 plot-area">{{ graph_html | raw }}</div>
+		</div>
+		<div class="col-xs-12 col-md-4 enviroment-variable-coloumn">
+		  {#Analysis of Time#}
+		  <div class="objects-wrapper-main panel panel-default">
+			<div class="objects-heading panel-heading">Analytics</div>
+			  <div class="times-wrapper panel-body">
+				<div class="objects-values">
+				  <ul class="objects-list">
+					{% for info in analysis %}
+					  {% set data = info|split('|') %}
+					  <li><strong>{{ data[0] }}</strong>{{ data[1] }}</li>
+					{% endfor %}
+				  </ul>
+				</div>
+			  </div>
+			</div>
+			{#Variables#}
+			<div class="objects-wrapper-main panel panel-default">
+			  <div class="objects-heading panel-heading">Enviornment Variables</div>
+				<div class="objects-wrapper panel-body">
+				  <div class="objects-values">
+				    <ul class="objects-list">
+					  {% for var in env_var %}
+						<li>{{ var }}</li>
+					  {% endfor %}
+				    </ul>
+				  </div>
+				</div>
+			  </div>
+	       </div>
+	     </div>
+	  {# / graph tab Content#}
+	  {#R Code tab Content#}
+	  <div id="rcode" class="tab-pane fade">
+		<div class="panel-body">
+		  <div class="code-area">
+		    <pre>{{ r_code }}</pre>
+		  </div>
+		</div>
+	  </div>
+	  {# / R Code tab Content#}
+	  {#R Example Code tab Content#}
+	  <div id="rcodeExample" class="tab-pane fade">
+		<div class="panel-body">
+		  <div class="code-area">
+		    <pre>{{ r_example_code }}</pre>
+		  </div>
+		</div>
+	  </div>
+	  {# / R Example Code tab Content#}
+	  {#Data tab Content#}
+	  <div id="data_table" class="tab-pane fade col-md-12">
+	    <div  class="export-wrapper full-width"><a id="export" data-export="export" class="btn btn-default"><span class="glyphicon glyphicon-export" aria-hidden="true"></span>Export</a></div>
+		  <div class="panel-body">
+	        <div class="table-responsive">
+			  <table id="dataTable" class="table table-bordered cols-0">
+			    <thead>
+				  <tr>
+				  {% for head in heads %}
+				    <th>{{ head }}</th>
+				  {% endfor %}
+				  </tr>
+				</thead>
+				<tbody>
+				{% for row in rows %}
+				  <tr>
+					{% for value in row %}
+					  <td>{{ value }}</td>
+					{% endfor %}
+				  </tr>
+				{% endfor %}
+				</tbody>
+			  </table>
+			</div>
+		  </div>
+	    </div>
+	    {# / Data tab Content#}
+	  </div>
+	  {% if env_var|length > 0 %}
+		<input type="hidden" id="result_found" value="yes">
+	  {% else %}
+	  <input type="hidden" id="result_found" value="no">
+	{% endif %}
+  </div>
+  {#{% for data in num_fields %}
+	{% set foo = data|split('=') %}
+	<option data-type="{{ foo[1] }}" value="{{ foo[0] }}">{{ foo[0] }}</option>
+  {% endfor %}
+  {{ attach_library('mc_devmode/mc_devmode') }}
+  <div id="csvFilePath">{{ file_path }}</div>
+  <div id="imgDir">{{ graph_dir }}</div>
+  <div id="module_path_scatter">{{ module_path }}</div>#}
+</div>

@@ -1,0 +1,157 @@
+
+tm_sketch.tm_sketch_source_controller_TmSketchReadSource:
+  path: '/tm-sketch-readsource'
+  defaults:
+    _controller: '\Drupal\tm_sketch\Controller\TmSketchSourceController::TmSketchReadSource'
+    _title: 'TmSketchReadSource'
+  requirements:
+    _permission: 'access content'
+tm_sketch.tm_sketch_source_controller_TmSketchReadCols:
+  path: '/tm-sketch-readcols'
+  defaults:
+    _controller: '\Drupal\tm_sketch\Controller\TmSketchSourceController::TmSketchReadCols'
+    _title: 'TmSketchCols'
+  requirements:
+    _permission: 'access content'
+tm_sketch.tm_sketch_source_controller_TmSketchMultiFilter:
+  path: '/tm-sketch-multifilter'
+  defaults:
+    _controller: '\Drupal\tm_sketch\Controller\TmSketchSourceController::TmSketchMultiFilter'
+    _title: 'TmSketchMultiFilter'
+  requirements:
+    _permission: 'access content'
+
+tm_sketch.tm_sketch_source_controller_TmSketchSorting:
+  path: '/tm-sketch-sorting'
+  defaults:
+    _controller: '\Drupal\tm_sketch\Controller\TmSketchSourceController::TmSketchSorting'
+    _title: 'TmSketchSorting'
+  requirements:
+    _permission: 'access content'
+
+tm_sketch.tm_sketch_source_controller_TmSketchSave:
+  path: '/tm-sketch-save'
+  defaults:
+    _controller: '\Drupal\tm_sketch\Controller\TmSketchSourceController::TmSketchSave'
+    _title: 'TmSketchSave'
+  requirements:
+    _permission: 'access content'
+tm_sketch.tm_sketch_source_controller_TmSketchClassifierOp:
+  path: '/tm-sketch-classifier-operator'
+  defaults:
+    _controller: '\Drupal\tm_sketch\Controller\TmSketchSourceController::TmSketchClassifierOp'
+    _title: 'TmSketchClassifierOperator'
+  requirements:
+    _permission: 'access content'
+tm_sketch.tm_sketch_source_controller_TmSketchSliceOp:
+  path: '/tm-sketch-slice-operator'
+  defaults:
+    _controller: '\Drupal\tm_sketch\Controller\TmSketchSourceController::TmSketchSliceOp'
+    _title: 'TmSketchSliceOperator'
+  requirements:
+    _permission: 'access content'
+tm_sketch.tm_sketch_source_controller_TmSketchJoin:
+      path: '/joins-data'
+      defaults:
+        _controller: '\Drupal\tm_sketch\Controller\TmSketchSourceController::TmSketchJoins'
+        _title: 'TmSketchJoins'
+      requirements:
+        _permission: 'access content'
+tm_sketch.tm_sketch_source_controller_TmSketchSelect:
+  path: '/tm-sketch-select'
+  defaults:
+    _controller: '\Drupal\tm_sketch\Controller\TmSketchSourceController::TmSketchSelect'
+    _title: 'TmSketchSelect'
+  requirements:
+    _permission: 'access content'
+tm_sketch.tm_sketch_source_controller_TmSketchSample:
+      path: '/tm-sketch-sample'
+      defaults:
+        _controller: '\Drupal\tm_sketch\Controller\TmSketchSourceController::TmSketchSample'
+        _title: 'TmSketchSample'
+      requirements:
+        _permission: 'access content'
+tm_sketch.tm_sketch_source_controller_TmSketchDistinct:
+          path: '/tm-sketch-distinct'
+          defaults:
+            _controller: '\Drupal\tm_sketch\Controller\TmSketchSourceController::TmSketchDistinct'
+            _title: 'TmSketchDistinct'
+          requirements:
+            _permission: 'access content'
+tm_sketch.tm_sketch_source_controller_TmSketchMutate:
+              path: '/tm-sketch-mutate'
+              defaults:
+                _controller: '\Drupal\tm_sketch\Controller\TmSketchSourceController::TmSketchMutate'
+                _title: 'TmSketchMutate'
+              requirements:
+                _permission: 'access content'
+tm_sketch.tm_sketch_source_controller_TmSketchSplit:
+  path: '/tm-sketch-split'
+  defaults:
+    _controller: '\Drupal\tm_sketch\Controller\TmSketchSourceController::TmSketchSplit'
+    _title: 'TmSketchSplit'
+  requirements:
+    _permission: 'access content'
+tm_sketch.tm_sketch_source_controller_TmSketchSummarize:
+      path: '/tm-sketch-summarize'
+      defaults:
+        _controller: '\Drupal\tm_sketch\Controller\TmSketchSourceController::TmSketchSummarize'
+        _title: 'TmSketchSummarize'
+      requirements:
+        _permission: 'access content'
+tm_sketch.tm_sketch_source_controller_TmSketchCat:
+  path: '/tm-sketch-cat'
+  defaults:
+    _controller: '\Drupal\tm_sketch\Controller\TmSketchSourceController::TmSketchCat'
+    _title: 'TmSketchCat'
+  requirements:
+    _permission: 'access content'
+tm_sketch.tm_sketch_source_controller_TmSketchGroupBy:
+  path: '/tm-sketch-groupby'
+  defaults:
+    _controller: '\Drupal\tm_sketch\Controller\TmSketchSourceController::TmSketchGroupBy'
+    _title: 'TmSketchGroupBy'
+  requirements:
+    _permission: 'access content'
+tm_sketch.tm_sketch_source_controller_TmSketchMap:
+      path: '/tm-sketch-mapping'
+      defaults:
+        _controller: '\Drupal\tm_sketch\Controller\TmSketchSourceController::TmSketchMapping'
+        _title: 'TmSketchMap'
+      requirements:
+        _permission: 'access content'
+tm_sketch.tm_sketch_source_controller_TmSketchKnn:
+          path: '/tm-sketch-knn-operator'
+          defaults:
+            _controller: '\Drupal\tm_sketch\Controller\TmSketchSourceController::TmSketchKnnOp'
+            _title: 'TmSketchKnn'
+          requirements:
+            _permission: 'access content'
+tm_sketch.tm_sketch_source_controller_TmSketchDtree:
+  path: '/tm-sketch-dtree-operator'
+  defaults:
+    _controller: '\Drupal\tm_sketch\Controller\TmSketchSourceController::TmSketchDtreeOp'
+    _title: 'TmSketchDtree'
+  requirements:
+    _permission: 'access content'
+tm_sketch.tm_sketch_source_controller_TmSketchPredict:
+  path: '/tm-sketch-predict-operator'
+  defaults:
+    _controller: '\Drupal\tm_sketch\Controller\TmSketchSourceController::TmSketchPredictOp'
+    _title: 'TmSketchPredict'
+  requirements:
+    _permission: 'access content'
+tm_sketch.tm_sketch_source_controller_TmSketchPerformance:
+  path: '/tm-sketch-performance-operator'
+  defaults:
+    _controller: '\Drupal\tm_sketch\Controller\TmSketchSourceController::TmSketchPerformanceOp'
+    _title: 'TmSketchPerformance'
+  requirements:
+    _permission: 'access content'
+tm_sketch.tm_sketch_delete_dataset:
+  path: '/delete-dataset'
+  defaults:
+    _controller: '\Drupal\tm_sketch\Controller\TmSketchSourceController::TmSketchDeleteDataset'
+    _title: 'TmSketchDeleteDataset'
+  requirements:
+    _permission: 'access content'

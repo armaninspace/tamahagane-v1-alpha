@@ -1,0 +1,31 @@
+<?php
+/**
+ * @file
+ * Contains tm_rankingplot.module.
+ */
+use Drupal\Core\Routing\RouteMatchInterface;
+/**
+ * Implements hook_help().
+ */
+function tm_rankingplot_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the tm_rankingplot module.
+    case 'help.page.tm_rankingplot':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('A module to integrate Rankingplot in Tamahagane') . '</p>';
+      return $output;
+    default:
+  }
+}
+/**
+ * Implements hook_theme().
+ */
+function tm_rankingplot_theme() {
+  return [
+    'tm_rankingplot' => [
+      'template' => 'tm_rankingplot',
+      'render element' => 'children',
+    ],
+  ];
+}

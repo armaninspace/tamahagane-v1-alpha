@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * @file
+ * Contains social_media.module..
+ */
+
+
+/**
+ * Implements hook_theme().
+ */
+function social_media_theme($existing, $type, $theme, $path) {
+  return array(
+    'social_media_links' => array(
+      'variables' => array(
+        'elements' => NULL,
+      ),
+      'template' => 'social-media-links',
+    )
+  );
+}

@@ -1,0 +1,16 @@
+tm_donutchart.donutchartform:
+  path: '/tm_donutchart/add/form'
+  defaults:
+    _controller: '\Drupal\tm_donutchart\Controller\DonutchartController::addForm'
+    _title: 'AddForm'
+  requirements:
+    _permission: 'access content'
+
+tm_donutchart.donutchart_process_data:
+  path: '/tm_donutchart/process/data'
+  defaults:
+    _controller: '\Drupal\tm_donutchart\Controller\DonutchartController::processData'
+    _title: 'ProcessData'
+  requirements:
+    _permission: 'access content'
+

@@ -1,0 +1,17 @@
+
+tm_spmatrix.areaform:
+  path: '/tm_spmatrix/add/form'
+  defaults:
+    _controller: '\Drupal\tm_spmatrix\Controller\SpmatrixController::addForm'
+    _title: 'AddForm'
+  requirements:
+    _permission: 'access content'
+
+tm_spmatrix.spmatrix_process_data:
+  path: '/tm_spmatrix/process/data'
+  defaults:
+    _controller: '\Drupal\tm_spmatrix\Controller\SpmatrixController::processData'
+    _title: 'ProcessData'
+  requirements:
+    _permission: 'access content'
+

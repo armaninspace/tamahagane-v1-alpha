@@ -1,0 +1,17 @@
+
+tm_biplot.biplotform:
+  path: '/tm_biplot/add/form'
+  defaults:
+    _controller: '\Drupal\tm_biplot\Controller\BiplotController::addForm'
+    _title: 'AddForm'
+  requirements:
+    _permission: 'access content'
+
+tm_biplot.biplot_process_data:
+  path: '/tm_biplot/process/data'
+  defaults:
+    _controller: '\Drupal\tm_biplot\Controller\BiplotController::processData'
+    _title: 'ProcessData'
+  requirements:
+    _permission: 'access content'
+

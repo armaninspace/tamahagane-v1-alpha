@@ -1,0 +1,31 @@
+tm_sketch:
+  version: VERSION
+  css:
+    theme:
+      css/selection.css: {}
+      css/joint.css: {}
+      css/joint.ui.navigator.min.css: {}
+      css/jqx.base.css: {}
+      css/style.css: {}
+      css/datatables.css: {}
+      css/tm_sketch.css: {}
+      css/jquery.toolbar.css: {}
+  js:
+    #https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js: { type: external }
+    #https://code.angularjs.org/1.2.15/angular-route.min.js: { type: external, minified: true }
+    #https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js: {type: external, minified: true }
+    #js/script.js: {}
+    #js/angular-gridster.js: {}
+    js/lodash.min.js: {}
+    js/backbone-min.js: {}
+    js/joint.js: {}
+    js/joint.ui.selectionView.js: {}
+    js/joint.ui.paperScroller.min.js: {}
+    js/jquery.doubleScroll.js: {}
+    js/joint.ui.navigator.min.js: {}
+    js/jqx-all.js: { weight: -3 }
+    js/jquery.dataTables.js: {}
+    js/dataTables.bootstrap.js: {}
+    js/tm_sketch.js: { weight: -2 }
+    js/jquery.toolbar.js: {}
+    js/js-webshim/minified/polyfiller.js: {}

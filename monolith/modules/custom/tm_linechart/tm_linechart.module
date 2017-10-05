@@ -1,0 +1,31 @@
+<?php
+/**
+ * @file
+ * Contains mc_scatterplot.module.
+ */
+use Drupal\Core\Routing\RouteMatchInterface;
+/**
+ * Implements hook_help().
+ */
+function tm_linechart_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the tm_linechart module.
+    case 'help.page.tm_linechart':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('A module to integrate Linechart in MarketCaliper') . '</p>';
+      return $output;
+    default:
+  }
+}
+/**
+ * Implements hook_theme().
+ */
+function tm_linechart_theme() {
+  return [
+    'tm_linechart' => [
+      'template' => 'tm_linechart',
+      'render element' => 'children',
+    ],
+  ];
+}

@@ -1,0 +1,31 @@
+<?php
+/**
+ * @file
+ * Contains tm_spmatrix.module.
+ */
+use Drupal\Core\Routing\RouteMatchInterface;
+/**
+ * Implements hook_help().
+ */
+function tm_lreg_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the tm_lreg module.
+    case 'help.page.tm_lreg':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('A module to integrate linear regression Tamahagne') . '</p>';
+      return $output;
+    default:
+  }
+}
+/**
+ * Implements hook_theme().
+ */
+function tm_lreg_theme() {
+  return [
+    'tm_lreg' => [
+      'template' => 'tm_lreg',
+      'render element' => 'children',
+    ],
+  ];
+}
